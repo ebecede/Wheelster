@@ -1,0 +1,57 @@
+body{
+    color: white
+}
+
+.navbar{
+    background-color: #091954;
+}
+.navbar-nav .nav-link{
+    color: white;
+}
+
+.btn-signin {
+    background-color: #374B8C;
+    color: white;
+    border: 1px solid #DDE1F0;
+    border-radius: 8px;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.btn-signin:hover {
+    background-color: #99C5F2;
+}
+
+/* FOOTER */
+.footer {
+    background-color: #091954; /* Dark blue background */
+    color: white; /* White text color */
+    padding: 20px 0; /* Padding for top and bottom */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.footer a {
+    color: white;
+    text-decoration: none;
+}
+.footer .footer-nav a {
+    margin-bottom: 10px;
+    display: block;
+}
+.footer .social-icons a {
+    margin-right: 15px;
+    font-size: 1.5em;
+}
+.footer .footer-bottom {
+    border-top: 1px solid #DDE1F0;
+    padding-top: 15px;
+    margin-top: 20px;
+}
+.footer-logo {
+    font-weight: bold;
+    font-size: 1.2em;
+}
