@@ -6,15 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Wheelster</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid text-white">
             <div class="footer-logo">
-                <img src="{{ asset('images/logo.png') }}" alt="Wheelster Logo" style="width: 50px; margin-left: 50px;">
+                <a href="#">
+                    <img src="{{ asset('images/logo.png') }}" alt="Wheelster Logo" style="width: 50px; margin-left: 100px;">
+                </a>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -22,21 +24,21 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav mx-auto" >
                     <a class="nav-link me-3" href="#">Home</a>
-                    <a class="nav-link me-3" href="#">About Us</a>
-                    <a class="nav-link me-3" href="#">Services</a>
-                    <a class="nav-link me-3" href="#">Team</a>
-                    <a class="nav-link me-3" href="#">Contact Us</a>
+                    <a class="nav-link me-3" href="#about">About Us</a>
+                    <a class="nav-link me-3" href="#services">Services</a>
+                    <a class="nav-link me-3" href="#team">Team</a>
+                    <a class="nav-link me-3" href="#contact">Contact Us</a>
                     <a class="nav-link" href="#">Product</a>
                 </div>
             </div>
             <div class="d-flex me-3">
-                <a href="#" class="btn btn-signin">Sign In</a>
+                <a href="#" class="btn btn-white">Sign In</a>
             </div>
         </div>
     </nav>
 
     <div class="flex-grow-1">
-        <!-- Main content goes here -->
+        @yield('content')
     </div>
 
     <footer class="footer mt-auto">
@@ -53,13 +55,13 @@
                     <div class="row footer-nav">
                         <div class="col-6">
                             <a href="#">Home</a>
-                            <a href="#">About Us</a>
-                            <a href="#">Services</a>
+                            <a href="#about">About Us</a>
+                            <a href="#services">Services</a>
                         </div>
                         <div class="col-6">
-                            <a href="#">Team</a>
-                            <a href="#">Contact Us</a>
-                            <a href="#">Product</a>
+                            <a href="#team">Team</a>
+                            <a href="#contact">Contact Us</a>
+                            <a href="#product">Product</a>
                         </div>
                     </div>
                 </div>
@@ -67,8 +69,12 @@
                 <div class="col-lg-2 col-md-12">
                     <h5>Follow Us</h5>
                     <div class="social-icons">
-                        <a href="#"><i class="bi bi-whatsapp"></i></a>
-                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="https://wa.me/+6285217920501" target="_blank" aria-label="WhatsApp">
+                            <i class="bi bi-whatsapp"></i>
+                        </a>
+                        <a href="https://www.instagram.com/wheelster.id" target="_blank" aria-label="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -88,3 +94,37 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>
+
+
+
+{{-- <footer class="text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="#" class="navbar-brand">
+                        <img src="logo.svg" alt="Wheelster Logo" height="40">
+                        <span class="ml-2">WHEELSTER</span>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-unstyled">
+                        <li><a href="#about" class="text-white">About Us</a></li>
+                        <li><a href="#services" class="text-white">Services</a></li>
+                        <li><a href="#team" class="text-white">Team</a></li>
+                        <li><a href="#contact" class="text-white">Contact Us</a></li>
+                        <li><a href="#product" class="text-white">Product</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 text-right">
+                    <h5 class="mb-3">Follow Us</h5>
+                    <a href="#" class="text-white mr-3"><i class="fab fa-whatsapp fa-2x"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-instagram fa-2x"></i></a>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12 text-center">
+                    <p class="mb-0">Copyright © 2024 Wheelsteer. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer> --}}
