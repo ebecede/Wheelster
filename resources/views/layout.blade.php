@@ -22,17 +22,17 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav mx-auto" >
+                <div class="navbar-nav mx-auto text-center" >
                     <a class="nav-link me-3" href="#">Home</a>
                     <a class="nav-link me-3" href="#about">About Us</a>
                     <a class="nav-link me-3" href="#services">Services</a>
                     <a class="nav-link me-3" href="#team">Team</a>
                     <a class="nav-link me-3" href="#contact">Contact Us</a>
-                    <a class="nav-link" href="#">Product</a>
+                    <a class="nav-link me-3" href="#">Product</a>
                 </div>
-            </div>
-            <div class="d-flex me-3">
-                <a href="#" class="btn btn-white">Sign In</a>
+                <div class="d-flex justify-content-center mt-2 mt-lg-0 me-3">
+                    <a href="{{ route('login') }}" class="btn btn-white">Sign In</a>
+                </div>
             </div>
         </div>
     </nav>
