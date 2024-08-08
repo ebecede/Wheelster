@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 
 Route::get('/', function () {
     return view('home');
 });
 
-Route::get('mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa.index');
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
