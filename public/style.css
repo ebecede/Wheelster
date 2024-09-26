@@ -295,3 +295,29 @@ li i {
     font-weight: bold;
     font-size: 1.2em;
 }
+
+/* CARD PRODUCT PAGE */
+.card {
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.pagination {
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.page-item .page-link {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+}

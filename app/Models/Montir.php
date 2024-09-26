@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model
+class Montir extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'picture', 'price', 'quantity'];
+    protected $fillable = [
+        'name'
+    ];
 
     public function orders()
     {

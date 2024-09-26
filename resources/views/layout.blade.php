@@ -15,7 +15,7 @@
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid text-white">
             <div class="footer-logo">
-                <a href="#">
+                <a href="{{ route('home') }}">
                     <img src="{{ asset('images/logo.png') }}" alt="Wheelster Logo" style="width: 50px; margin-left: 100px;">
                 </a>
             </div>
@@ -24,7 +24,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav mx-auto text-center" >
-                    <a class="nav-link me-3" href="#">Home</a>
+                    <a class="nav-link me-3" href="{{ route('home') }}">Home</a>
                     <a class="nav-link me-3" href="#about">About Us</a>
                     <a class="nav-link me-3" href="#services">Services</a>
                     <a class="nav-link me-3" href="#team">Team</a>
@@ -95,37 +95,3 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>
-
-
-
-{{-- <footer class="text-white py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <a href="#" class="navbar-brand">
-                        <img src="logo.svg" alt="Wheelster Logo" height="40">
-                        <span class="ml-2">WHEELSTER</span>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <ul class="list-unstyled">
-                        <li><a href="#about" class="text-white">About Us</a></li>
-                        <li><a href="#services" class="text-white">Services</a></li>
-                        <li><a href="#team" class="text-white">Team</a></li>
-                        <li><a href="#contact" class="text-white">Contact Us</a></li>
-                        <li><a href="#product" class="text-white">Product</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4 text-right">
-                    <h5 class="mb-3">Follow Us</h5>
-                    <a href="#" class="text-white mr-3"><i class="fab fa-whatsapp fa-2x"></i></a>
-                    <a href="#" class="text-white"><i class="fab fa-instagram fa-2x"></i></a>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-md-12 text-center">
-                    <p class="mb-0">Copyright © 2024 Wheelsteer. All Rights Reserved.</p>
-                </div>
-            </div>
-        </div>
-    </footer> --}}

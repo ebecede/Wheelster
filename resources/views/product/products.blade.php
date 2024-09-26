@@ -13,14 +13,14 @@
     <div class="container py-5">
 
         <div class="row">
-            @foreach ($items as $item)
+            @foreach ($products as $product)
                 <div class="col-md-3 mb-4">
-                    <a href="{{ route('product.detail', $item->id) }}" class="card h-100 shadow-sm text-decoration-none">
-                        <img src="{{ $item->picture }}" class="card-img-top" alt="{{ $item->name }}">
+                    <a href="{{ route('productDetail', $product->id) }}" class="card h-100 shadow-sm text-decoration-none">
+                        <img src="{{ $product->picture }}" class="card-img-top" alt="{{ $product->name }}">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $item->name }}</h5>
-                            <p class="card-text">{{ $item->description }}</p>
-                            <p class="card-text"><strong>Rp {{ number_format($item->price, 2) }}</strong></p>
+                            <h5 class="card-title">{{ $product->name }}</h5>
+                            <p class="card-text">{{ $product->description }}</p>
+                            <p class="card-text"><strong>Rp {{ number_format($product->price, 2) }}</strong></p>
                         </div>
                     </a>
                 </div>
@@ -28,7 +28,7 @@
         </div>
 
         <div class="d-flex justify-content-center">
-            {{ $items->links('pagination::bootstrap-5') }} <!-- Pagination links -->
+            {{ $products->links('pagination::bootstrap-5') }} <!-- Pagination links -->
         </div>
     </div>
 @endsection

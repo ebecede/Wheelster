@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,10 +19,10 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            'customer_id' => factory(App\Models\User::class)->create(['role' => 'customer'])->id,
-            'item_id' => factory(App\Models\Item::class)->create()->id,
+            'user_id' => User::factory()->create(['role' => 'customer'])->id, // Corrected User factory call
+            'product_id' => Product::factory()->create()->id, // Corrected Product factory call
             'totalPrice' => $this->faker->randomFloat(2, 50, 1000),
-            'date' => $this->faker->date(),
+            'orderDate' => $this->faker->date(),
         ];
     }
 }
