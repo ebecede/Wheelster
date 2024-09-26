@@ -2,7 +2,7 @@
 @extends('layout')
 
 @section('content')
-<div class="container col-md-4 login">
+<div class="container col-md-4 backblue">
     <div class="logo">
       <img src="{{ asset('images/logo-2.png') }}" alt="Wheelsteer Logo">
     </div>

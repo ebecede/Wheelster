@@ -51,18 +51,54 @@ body {
     color: white;
     border: 1px solid #DDE1F0;
     border-radius: 12px;
-    padding: 10px 10px;
+    /* padding: 5px 10px; */
     text-align: center;
     text-decoration: none;
     /* display: inline-block; */
     /* transition: background-color 0.3s ease; */
 }
 
-/* .btn-darkblue:hover {
+.btn-darkblue:hover {
     background-color: #99C5F2;
     transition: background-color 0.3s ease;
     border: 1px solid #DDE1F0;
-} */
+}
+
+.btn-red {
+    background-color: red;
+    color: white;
+    border: 1px solid #DDE1F0;
+    border-radius: 12px;
+    /* padding: 10px 10px; */
+    text-align: center;
+    text-decoration: none;
+    /* display: inline-block; */
+    /* transition: background-color 0.3s ease; */
+}
+
+.btn-red:hover {
+    background-color: red;
+    transition: background-color 0.3s ease;
+    border: 1px solid #DDE1F0;
+}
+
+.btn-green {
+    background-color: green;
+    color: white;
+    border: 1px solid #DDE1F0;
+    border-radius: 12px;
+    /* padding: 10px 10px; */
+    text-align: center;
+    text-decoration: none;
+    /* display: inline-block; */
+    /* transition: background-color 0.3s ease; */
+}
+
+.btn-green:hover {
+    background-color: green;
+    transition: background-color 0.3s ease;
+    border: 1px solid #DDE1F0;
+}
 
 #home {
     background: url('images/Landing.png') no-repeat center center;
@@ -175,7 +211,7 @@ li i {
 }
 
 
-.login {
+.backblue {
     background-color: #C6DDF6;
     padding: 40px;
     border-radius: 8px;
@@ -321,3 +357,4 @@ li i {
     padding: 10px 15px;
     border: 1px solid #ddd;
 }
+

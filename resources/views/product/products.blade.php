@@ -11,12 +11,11 @@
     </div>
 </section>
     <div class="container py-5">
-
         <div class="row">
             @foreach ($products as $product)
                 <div class="col-md-3 mb-4">
-                    <a href="{{ route('productDetail', $product->id) }}" class="card h-100 shadow-sm text-decoration-none">
-                        <img src="{{ $product->picture }}" class="card-img-top" alt="{{ $product->name }}">
+                    <a href="{{ route('product_detail', $product) }}" class="card h-100 shadow-sm text-decoration-none">
+                        <img src="{{ $product->image }}" class="card-img-top" alt="{{ $product->name }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $product->name }}</h5>
                             <p class="card-text">{{ $product->description }}</p>
@@ -26,8 +25,7 @@
                 </div>
             @endforeach
         </div>
-
-        <div class="d-flex justify-content-center">
+        <div>
             {{ $products->links('pagination::bootstrap-5') }} <!-- Pagination links -->
         </div>
     </div>

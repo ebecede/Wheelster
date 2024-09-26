@@ -16,14 +16,10 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('product_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->decimal('totalPrice', 10, 2);
+            $table->string('status');
             $table->date('orderDate');
             $table->timestamps();
-            // $table->unsignedBigInteger('customer_id');
-            // $table->foreign('customer_id')->references('id')->on('users')->onDelete('cascade');
-            // $table->unsignedBigInteger('product_id');
-            // $table->foreign('product_id')->references('id')->on('items')->onDelete('cascade');
         });
-
     }
 
     /**

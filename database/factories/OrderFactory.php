@@ -22,6 +22,7 @@ class OrderFactory extends Factory
             'user_id' => User::factory()->create(['role' => 'customer'])->id, // Corrected User factory call
             'product_id' => Product::factory()->create()->id, // Corrected Product factory call
             'totalPrice' => $this->faker->randomFloat(2, 50, 1000),
+            'status' => $this->faker->randomElement(['In Progress', 'Complete', 'Cancelled']), // Adding Faker for status
             'orderDate' => $this->faker->date(),
         ];
     }
