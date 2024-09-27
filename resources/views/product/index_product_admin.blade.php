@@ -15,6 +15,7 @@
                     <th>Display</th>
                     <th>Product Name</th>
                     <th>Price</th>
+                    <th>Stock</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -26,8 +27,8 @@
                         <h4 class="card-title">{{ $product->name }}</h4>
                         <p class="card-text">{{ $product->description }}</p>
                     </td>
-
                     <td><p class="card-text"><strong>Rp {{ number_format($product->price, 2) }}</strong></p></td>
+                    <td><p class="card-text"><strong>{{ $product->stock}}</strong></p></td>
                     <td>
                         <div class="d-flex">
                             <form action="{{ route('edit_product', $product) }}" method="get">
