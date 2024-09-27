@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('admin.admin_layout')
 
 @section('content')
 <section id="home" class="bg-dark text-white py-5 bg-image">
@@ -14,14 +14,15 @@
         <div class="row">
             @foreach ($products as $product)
                 <div class="col-md-3 mb-4">
-                    <a href="{{ route('product_detail', $product) }}" class="card h-100 shadow-sm text-decoration-none">
-                        <img src="{{ $product->image }}" class="card-img-top" alt="{{ $product->name }}">
+                    <form action="{{ route('create_order', $product->id) }}" method="get" class="card h-100 shadow-sm text-decoration-none">
+                        <img src="{{ url('storage/public/' . $product->image) }}" alt="" height="100px">
                         <div class="card-body">
                             <h5 class="card-title">{{ $product->name }}</h5>
                             <p class="card-text">{{ $product->description }}</p>
                             <p class="card-text"><strong>Rp {{ number_format($product->price, 2) }}</strong></p>
                         </div>
-                    </a>
+                        <button type="submit" class="btn btn-darkblue">Make Order</button>
+                    </form>
                 </div>
             @endforeach
         </div>

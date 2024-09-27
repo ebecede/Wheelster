@@ -17,4 +17,5 @@ class Montir extends Model
     {
         return $this->hasMany(Order::class);
     }
+
 }

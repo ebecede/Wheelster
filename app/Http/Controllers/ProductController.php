@@ -9,71 +9,97 @@ use Illuminate\Support\Facades\Redirect;
 
 class ProductController extends Controller
 {
-    // ADD PRODUCT
-    public function createProduct()
+    public function create_product()
     {
         return view('product.create_product');
     }
 
-    public function storeProduct(Request $request)
+    public function store_product(Request $request)
     {
-        $validateData = $request->validate([
+        $request->validate([
             'name' => 'required',
             'price' => 'required',
             'description' => 'required',
-            'stock'=>'required|integer|min:1',
+            'stock'=>'required',
             'image' => 'required',
         ]);
 
         $file = $request->file('image');
         $path = time() . '_' . $request->name . "." . $file->getClientOriginalExtension();
 
-        Storage::disk('local')->put('public/' . $path, file_get_contents($file));
+        Storage::disk('public')->put('public/' . $path, file_get_contents($file));
 
-        dump($validateData);
+        Product::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'description' => $request->description,
+            'stock' => $request->stock,
+            'image' => $path,
+        ]);
 
-        $product = new Product();
-        $product->name = $validateData['name'];
-        $product->price = $validateData['price'];
-        $product->description = $validateData['description'];
-        $product->stock = $validateData['stock'];
-        $product->image = $path;
-        // $product->save();
-
-        try {
-            $product->save();
-            return Redirect::route('products')->with('success', 'Product created successfully');
-        } catch (\Exception $e) {
-            Log::error($e->getMessage());
-            return back()->with('error', 'Something went wrong while saving the product');
-        }
-
-        // return Redirect::route('products')->with('success', 'Product created successfully');
+        return Redirect::route('index_product_admin');
     }
 
-    // SHOW PRODUCT
-    public function viewAllProduct()
+    public function index_product()
     {
-        $products = Product::paginate(12); // 12 Products per page
-        return view('product.products', compact('products'));
+        $products = Product::paginate(5);
+        return view('product.index_product', compact('products'));
     }
 
-    public function viewDetailProduct(Product $product)
+    public function index_product_admin()
     {
-        return view('product.product_detail', compact('product'));
+        $products = Product::paginate(5);
+        return view('product.index_product_admin', compact('products'));
     }
 
-    // EDIT PRODUCT
-    public function editProduct(Product $product)
+    public function show_product(Product $product)
+    {
+        return view('product.show_product', compact('product'));
+    }
+
+    public function edit_product(Product $product)
     {
         return view('product.edit_product', compact('product'));
     }
 
+    public function update_product(Product $product, Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+            'stock'=>'required',
+            'image' => 'required',
+        ]);
+
+        $file = $request->file('image');
+        $path = time() . '_' . $request->name . "." . $file->getClientOriginalExtension();
+
+        Storage::disk('public')->put('public/' . $path, file_get_contents($file));
+
+        $product->update([
+            'name' => $request->name,
+            'price' => $request->price,
+            'description' => $request->description,
+            'stock' => $request->stock,
+            'image' => $path,
+        ]);
+
+        return Redirect::route('index_product_admin', $product);
+    }
+
     // DELETE PRODUCT
-    public function deleteProduct(Product $product)
+    public function delete_product(Product $product)
     {
         $product->delete();
-        return Redirect::route('products');
+        return Redirect::route('index_product_admin');
     }
+
+    // SHOW PRODUCT ADMIN
+    // public function viewAllProductAdmin()
+    // {
+    //     $products = Product::paginate(5); // 12 Products per page
+    //     return view('admin.admin_products', compact('products'));
+    // }
 }
 

@@ -1,12 +1,12 @@
 @extends('layout')
 
 @section('content')
-<div class="container col-md-8 backblue my-5">
+<div class="container col-md-7 backblue my-5">
     <div class="row">
-        <div class="col-md-7">
-            <img src="{{ $product->image }}" alt="{{ $product->name }}" class="img-fluid mb-4">
+        <div class="col-md-6">
+            <img src="{{ url('storage/public/' . $product->image) }}" alt="" height="500px" width="500px">
         </div>
-        <div class="col-md-5">
+        <div class="col-md-6">
             <h1>{{ $product->name }}</h1>
             <p class="lead">Rp {{ number_format($product->price, 2) }}</p>
             <form action=" " method="POST" enctype="multipart/form-data">

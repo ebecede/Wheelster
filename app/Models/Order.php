@@ -12,8 +12,12 @@ class Order extends Model
     protected $fillable = [
         'user_id',
         'product_id',
-        'totalPrice',
-        'orderDate'
+        'montir_id',
+        'vehicleName',
+        'steeringWheelPhoto',
+        'amount',
+        'status',
+        'scheduleDate'
     ];
 
     public function user()
@@ -21,9 +25,9 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function product()
+    public function products()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsToMany(Product::class);
     }
 
     public function montir()

@@ -4,7 +4,7 @@
 <div class="container my-5">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h3>Products</h3>
-        <form action="{{ route('products.create') }}" method="get">
+        <form action="{{ route('create_product') }}" method="get">
             <button type="submit" class="btn-darkblue"><i class="fas fa-plus me-1" style="padding: 10px 5px"></i> Add</button>
         </form>
     </div>
@@ -21,7 +21,7 @@
             <tbody>
                 @foreach ($products as $product)
                 <tr>
-                    <td><img src="{{ $product->image }}" class="product-image" alt="Product Image" style="width: 150px"></td>
+                    <td><img src="{{ url('storage/public/' . $product->image) }}" alt="" height="100px">
                     <td>
                         <h4 class="card-title">{{ $product->name }}</h4>
                         <p class="card-text">{{ $product->description }}</p>

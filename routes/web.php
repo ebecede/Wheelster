@@ -10,18 +10,27 @@ use App\Http\Controllers\ProductController;
 // customer
 Route::get('/', [HomeController::class, 'viewHomePage'])->name('home');
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-// Route::get('/products', [ProductController::class, 'viewAllProduct'])->name('products');
-// Route::get('/{product}', [ProductController::class, 'viewDetailProduct'])->name('product_detail');
+Route::get('/product', [ProductController::class, 'index_product'])->name('index_product');
+// Route::get('/product/{product}',[ProductController::class, 'show_product'])->name('show_product');
 
+// CRUD for customer
+Route::get('/order/create/{product}', [OrderController::class, 'create_order'])->name('create_order');
+Route::post('/order/create', [OrderController::class, 'store_order'])->name('store_order');
 
 // admin
 Route::get('/admin', [HomeController::class, 'viewAdminHome'])->name('home_admin');
-Route::get('/products', [AdminController::class, 'viewAllProduct'])->name('products');
-Route::get('/create', [ProductController::class, 'createProduct'])->name('products.create');
-Route::post('/store', [ProductController::class, 'storeProduct'])->name('products.store');
-Route::get('/orders', [OrderController::class, 'viewAllOrders'])->name('view_order');
-Route::get('/{product}', [ProductController::class, 'editProduct'])->name('edit_product');
-Route::delete('/products/{product}', [ProductController::class, 'deleteProduct'])->name('delete_product');
+// Route::get('/products', [ProductController::class, 'viewAllProductAdmin'])->name('products');
+
+// CRUD PRODUCT for ADMIN
+Route::get('/product/create', [ProductController::class, 'create_product'])->name('create_product');
+Route::post('/product/create', [ProductController::class, 'store_product'])->name('store_product');
+Route::get('/products', [ProductController::class, 'index_product_admin'])->name('index_product_admin');
+Route::get('/product/{product}/edit',[ProductController::class, 'edit_product'])->name('edit_product');
+Route::patch('/product/{product}/update',[ProductController::class, 'update_product'])->name('update_product');
+Route::delete('/product/{product}',[ProductController::class, 'delete_product'])->name('delete_product');
+
+Route::get('/order', [OrderController::class, 'viewAllOrders'])->name('view_order');
+
 
 // KALO MAU BUAT KEKNYA HARUS SATU PERSATU
 // DEH ANTARA ADMIN DULU ATAU CUSTOMER DULU
