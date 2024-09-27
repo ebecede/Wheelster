@@ -30,8 +30,8 @@
                     <label for="productImage">Product Image</label>
                     <input type="file" name="productImage" id="steeringWheelPhoto" class="form-control-file" value="{{ $product->image }}" required>
                 </div>
-                <form action="{{ route('store_product') }}" method="post" enctype="multipart/form-data">
-                    <button type="submit" class="btn-darkblue btn-block mt-4">Submit</button>
+                <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data">
+                    <button type="submit" class="btn btn-darkblue btn-block mt-4">Submit</button>
                 </form>
             </form>
         </div>

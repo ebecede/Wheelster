@@ -10,18 +10,18 @@ use App\Http\Controllers\ProductController;
 // customer
 Route::get('/', [HomeController::class, 'viewHomePage'])->name('home');
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::get('/products', [ProductController::class, 'viewAllProduct'])->name('products');
-Route::get('/{product}', [ProductController::class, 'viewDetailProduct'])->name('product_detail');
+// Route::get('/products', [ProductController::class, 'viewAllProduct'])->name('products');
+// Route::get('/{product}', [ProductController::class, 'viewDetailProduct'])->name('product_detail');
 
 
 // admin
-// Route::get('/admin', [HomeController::class, 'viewAdminHome'])->name('home_admin');
-// Route::get('/products', [AdminController::class, 'viewAllProduct'])->name('products');
-// Route::get('/createproduct', [ProductController::class, 'createProduct'])->name('create_product');
-// Route::post('/createproduct', [ProductController::class, 'storeProduct'])->name('store_product');
-// Route::get('/orders', [OrderController::class, 'viewAllOrders'])->name('view_order');
-// Route::get('/{product}', [ProductController::class, 'editProduct'])->name('edit_product');
-// Route::delete('/products/{product}', [ProductController::class, 'deleteProduct'])->name('delete_product');
+Route::get('/admin', [HomeController::class, 'viewAdminHome'])->name('home_admin');
+Route::get('/products', [AdminController::class, 'viewAllProduct'])->name('products');
+Route::get('/create', [ProductController::class, 'createProduct'])->name('products.create');
+Route::post('/store', [ProductController::class, 'storeProduct'])->name('products.store');
+Route::get('/orders', [OrderController::class, 'viewAllOrders'])->name('view_order');
+Route::get('/{product}', [ProductController::class, 'editProduct'])->name('edit_product');
+Route::delete('/products/{product}', [ProductController::class, 'deleteProduct'])->name('delete_product');
 
 // KALO MAU BUAT KEKNYA HARUS SATU PERSATU
 // DEH ANTARA ADMIN DULU ATAU CUSTOMER DULU

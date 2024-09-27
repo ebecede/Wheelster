@@ -15,14 +15,14 @@ class ProductController extends Controller
         return view('product.create_product');
     }
 
-    public function storeProduct()
+    public function storeProduct(Request $request)
     {
-        $request->validate([
+        $validateData = $request->validate([
             'name' => 'required',
-            'description' => 'required',
-            'image' => 'required',
             'price' => 'required',
-            'stock'=>'required'
+            'description' => 'required',
+            'stock'=>'required|integer|min:1',
+            'image' => 'required',
         ]);
 
         $file = $request->file('image');
@@ -30,15 +30,25 @@ class ProductController extends Controller
 
         Storage::disk('local')->put('public/' . $path, file_get_contents($file));
 
-        Product::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'image' => $path,
-            'price' => $request->price,
-            'stock' => $request->stock
-        ]);
+        dump($validateData);
 
-        return Redirect::route('create_product');
+        $product = new Product();
+        $product->name = $validateData['name'];
+        $product->price = $validateData['price'];
+        $product->description = $validateData['description'];
+        $product->stock = $validateData['stock'];
+        $product->image = $path;
+        // $product->save();
+
+        try {
+            $product->save();
+            return Redirect::route('products')->with('success', 'Product created successfully');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return back()->with('error', 'Something went wrong while saving the product');
+        }
+
+        // return Redirect::route('products')->with('success', 'Product created successfully');
     }
 
     // SHOW PRODUCT
