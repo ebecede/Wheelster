@@ -4,11 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 
 // customer
-Route::get('/', [HomeController::class, 'viewHomePage'])->name('home');
+Route::get('/', [UserController::class, 'viewHomePage'])->name('home');
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::get('/product', [ProductController::class, 'index_product'])->name('index_product');
 // Route::get('/product/{product}',[ProductController::class, 'show_product'])->name('show_product');
@@ -18,7 +19,7 @@ Route::get('/order/create/{product}', [OrderController::class, 'create_order'])-
 Route::post('/order/create', [OrderController::class, 'store_order'])->name('store_order');
 
 // admin
-Route::get('/admin', [HomeController::class, 'viewAdminHome'])->name('home_admin');
+Route::get('/admin', [AdminController::class, 'viewAdminHome'])->name('home_admin');
 // Route::get('/products', [ProductController::class, 'viewAllProductAdmin'])->name('products');
 
 // CRUD PRODUCT for ADMIN
@@ -36,3 +37,7 @@ Route::get('/order', [OrderController::class, 'viewAllOrders'])->name('view_orde
 // DEH ANTARA ADMIN DULU ATAU CUSTOMER DULU
 // GABISA DUA DUANYA NIH GAJELAS APLIKASINYA COK
 // JADI KALO MAU GANTI KE ADMIN YANG PRODUCT DI CUSTOMER DI COMMENT DULU
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
