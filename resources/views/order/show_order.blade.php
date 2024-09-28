@@ -1,17 +1,15 @@
-@extends('admin.admin_layout')
+@extends('layout')
 
 @section('content')
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h3>Order List</h3>
-        {{-- ganti iconnya jangan lupa --}}
-        <button class="btn btn-darkblue"><i class="fas fa-plus" style="padding: 5px 5px"></i> Report</button>
+        <h3>Transaction History</h3>
     </div>
     <div class="table-responsive">
         <table class="table">
             <thead>
                 <tr class="table-light">
-                    <th scope="col">Customer Name</th>
+                    <th scope="col">Product Image</th>
                     <th scope="col">Product Name</th>
                     <th scope="col">Price</th>
                     <th scope="col">Date</th>
@@ -22,17 +20,14 @@
             <tbody>
                 @foreach ($orders as $order)
                 <tr>
-                    {{-- Display Customer Name --}}
-                    <td>
-                        {{ $order->user->name}}
-                    </td>
+                    <td><img src="{{ url('storage/public/' . $order->product->image) }}" alt="" height="100px">
                     {{-- Display Product Name --}}
                     <td>{{ $order->product->name }}</td>
                     {{-- Display Product Price --}}
                     <td>Rp {{ number_format($order->product->price, 2) }}</td>
                     {{-- Display Order Status with Badge Styling --}}
                     <td>
-                        {{ $order->orderDate }}
+                        {{ $order->scheduleDate }}
                     </td>
                     <td>
                         @if ($order->status == 'In Progress')
@@ -46,15 +41,17 @@
                     {{-- Conditional Action Buttons --}}
                     <td>
                         @if ($order->status == 'In Progress')
-                            <a href="" class="btn btn-darkblue">
-                                <i class="fa fa-edit"></i>
+                        <dev class="d-flex">
+                            <a href="{{ route('reschedule', $order) }}" class="btn btn-darkblue me-2">
+                                <i class="bi bi-pencil-square"></i>
                             </a>
-                            <a href="" class="btn btn-red">
-                                <i class="fa fa-times"></i>
-                            </a>
-                            <a href="" class="btn btn-green">
-                                <i class="fa fa-check"></i>
-                            </a>
+                            <form action="{{ route('cancel_order', $order) }}" method="post" >
+                                @method('patch')
+                                @csrf
+                                <button type="submit" class="btn btn-red"><i class="bi bi-x-circle"></i></button>
+                            </form>
+                        </dev>
+
                         @else
                             {{-- No actions for Complete or Cancelled orders --}}
                             <span class="text-muted">N/A</span>
@@ -65,8 +62,6 @@
             </tbody>
         </table>
     </div>
-    <div>
-        {{ $orders->links('pagination::bootstrap-5') }} <!-- Pagination links -->
-    </div>
+
 </div>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Order;
 
 class AdminController extends Controller
 {
@@ -11,4 +12,6 @@ class AdminController extends Controller
     {
         return view('admin.admin_home');
     }
+
+
 }

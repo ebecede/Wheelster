@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('product_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('montir_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('product_id')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
+            // $table->foreignId('montir_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('vehicleName');
             $table->string('steeringWheelPhoto');
             $table->integer('amount');
