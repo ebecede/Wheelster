@@ -9,7 +9,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 
 // customer
-Route::get('/', [UserController::class, 'viewHomePage'])->name('home_cust');
+Route::get('/', [UserController::class, 'viewHomePage'])->name('home');
 // Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::get('/product', [ProductController::class, 'index_product'])->name('index_product');
 Route::get('/product/{product}',[ProductController::class, 'show_product'])->name('show_product');
@@ -20,7 +20,8 @@ Route::patch('/transaction/{order}/cancel', [OrderController::class, 'cancel_ord
 Route::post('/order/{product}', [OrderController::class, 'make_order'])->name('make_order');
 
 // admin
-Route::get('/admin', [AdminController::class, 'viewAdminHome'])->name('home_admin');
+// Route::get('/admin', [AdminController::class, 'viewAdminHome'])->name('home_admin');
+// udah gakepake yang admin home ini, nanti aja apusnya
 
 // CRUD PRODUCT for ADMIN
 Route::get('/products/create', [ProductController::class, 'create_product'])->name('create_product');
@@ -45,4 +46,4 @@ Route::patch('/order/{order}/complete', [OrderController::class, 'complete_order
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

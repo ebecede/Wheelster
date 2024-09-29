@@ -1,4 +1,4 @@
-@extends('admin.admin_layout')
+@extends('layouts.product_layout')
 
 @section('content')
 <div class="container py-5">

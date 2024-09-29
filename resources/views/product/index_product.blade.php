@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.product_layout')
 
 @section('content')
 <section id="home" class="bg-dark text-white py-5 bg-image">

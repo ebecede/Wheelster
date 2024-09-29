@@ -7,7 +7,7 @@
                 <div class="col-md-12 text-center">
                     <h1 class="fw-bold display-4">Welcome to <img src="{{ asset('images/logo-2.png') }}" alt="Wheelster Logo" height="100"></h1>
                     <p class="lead">Providing the best car steering modification services in the PIK area.</p>
-                    <a href="#" class="btn btn-darkblue">Get Started</a>
+                    {{-- <a href="#" class="btn btn-darkblue">Get Started</a> --}}
                 </div>
             </div>
         </div>
