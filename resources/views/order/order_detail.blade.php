@@ -8,13 +8,13 @@
     </div>
     <hr style="border-color: black;"> <br>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 text-center">
             <img src="{{ url('storage/public/' . $order->product->image) }}" alt="Product Image" height="500px" width="500px">
+            <h4 class="card-text mt-3"><strong>{{ $order->product->name }} - Rp {{ number_format($order->product->price, 2) }}</strong></h4>
         </div>
         <div class="col-md-6">
-            <p class="card-text">Product Name: <strong>{{ $order->product->name }}</strong></p>
-            <p class="card-text">Product Price: <strong>{{ number_format($order->product->price, 2) }}</strong></p>
             <p class="card-text">Customer Name: <strong>{{ $order->user->name }}</strong></p>
+            <p class="card-text">Vehicle Name and Model: <strong>{{ $order->vehicleName }}</strong></p>
             <p class="card-text">Schedule Date: <strong>{{ $order->scheduleDate }}</strong></p>
             <p class="card-text">Status:
                 @if ($order->status == 'In Progress')
@@ -26,7 +26,7 @@
                 @endif
             </p>
             <p class="card-text">Car Steering Wheel Photo:</p>
-            <img src="{{ url('storage/public/' . $order->steeringWheelPhoto) }}" alt="Car Steering Wheel Photo" width="250px">
+            <img src="{{ url('storage/public/' . $order->steeringWheelPhoto) }}" alt="Car Steering Wheel Photo" width="300px">
         </div>
     </div>
 </div>

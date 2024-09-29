@@ -9,7 +9,6 @@
     <hr style="border-color: black;">
     <div class="row">
         <div class="col-md-12">
-            <h1></h1>
             <form action="{{ route('update_product', $product) }}" method="post" enctype="multipart/form-data">
                 @method('patch')
                 @csrf
@@ -29,13 +28,12 @@
                     <label for="Stock">Stock</label>
                     <input type="number" name="stock" id="stock" class="form-control" value="{{ $product->stock }}" required>
                 </div>
-                {{-- INI GUA MASI BINGUNG CARA STORE IMAGE YANG UDH ADA --}}
                 <div class="form-group">
                     <label for="productImage">Product Image</label>
                     @if($product->image)
                         <img src="{{ asset('storage/public/' . $product->image) }}" alt="Product Image" width="100">
                     @endif
-                    <input type="file" name="image" class="form-control-file">
+                    <input type="file" name="image" class="form-control-file" accept="image/*">
                 </div>
 
                 <button type="submit" class="btn btn-darkblue btn-block mt-4">Submit</button>

@@ -3,9 +3,9 @@
 @section('content')
 <div class="container my-5">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h3>Products</h3>
+        <h1>Products List</h1>
         <form action="{{ route('create_product') }}" method="get">
-            <button type="submit" class="btn-darkblue"><i class="fas fa-plus me-1" style="padding: 10px 5px"></i> Add</button>
+            <button type="submit" class="btn btn-darkblue pe-3"><i class="bi bi-plus-circle me-2"></i> Add</button>
         </form>
     </div>
     <div class="table-responsive">
@@ -34,7 +34,7 @@
                             <form action="{{ route('edit_product', $product) }}" method="get">
                                 <button class="btn btn-darkblue me-2"><i class="fas fa-edit"></i></button>
                             </form>
-                            <form action="{{ route('delete_product', $product) }}" method="post">
+                            <form action="{{ route('delete_product', $product) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this product?');">
                                 @method('delete')
                                 @csrf
                                 <button class="btn btn-red"><i class="fas fa-trash"></i></button>

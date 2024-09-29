@@ -6,6 +6,7 @@
         <a href="{{ url()->previous() }}" style="color: black"><i class="bi bi-arrow-left"></i></a>
         <h1 class="text-center flex-grow-1">Add New Product</h1>
     </div>
+    <hr style="border-color: black;">
     <div class="row">
         <div class="col-md-12">
             <form action="{{ route('store_product') }}" method="post" enctype="multipart/form-data"> <!-- Correct action route -->

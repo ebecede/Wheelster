@@ -68,25 +68,36 @@ class ProductController extends Controller
             'name' => 'required',
             'price' => 'required',
             'description' => 'required',
-            'stock'=>'required',
-            'image' => 'required',
+            'stock' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Make this nullable
         ]);
 
-        $file = $request->file('image');
-        $path = time() . '_' . $request->name . "." . $file->getClientOriginalExtension();
-
-        Storage::disk('public')->put('public/' . $path, file_get_contents($file));
-
-        $product->update([
+        $data = [
             'name' => $request->name,
             'price' => $request->price,
             'description' => $request->description,
             'stock' => $request->stock,
-            'image' => $path,
-        ]);
+        ];
+
+        // Check if a new image was uploaded
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $path = time() . '_' . $request->name . "." . $file->getClientOriginalExtension();
+
+            // Store the new image
+            Storage::disk('public')->put('public/' . $path, file_get_contents($file));
+            $data['image'] = $path; // Update the image path in data
+        } else {
+            // Keep the existing image if no new image was uploaded
+            $data['image'] = $product->image;
+        }
+
+        // Update the product
+        $product->update($data);
 
         return Redirect::route('index_product_admin', $product);
     }
+
 
     // DELETE PRODUCT
     public function delete_product(Product $product)

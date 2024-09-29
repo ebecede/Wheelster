@@ -12,9 +12,9 @@
             <img src="{{ url('storage/public/' . $product->image) }}" alt="" height="500px" width="500px">
         </div>
         <div class="col-md-6">
-            <h5 class="">Product Name: <strong>{{ $product->name }}</strong></h5>
-            <h5 class="">Price: <strong>Rp {{ number_format($product->price, 2) }}</strong></h5>
-            <h5 class="">Product Description: <strong>{{ $product->description }}</strong></h5>
+            <h4 class=""><strong>{{ $product->name }}</strong></h4>
+            <h3 class=""><strong>Rp{{ number_format($product->price, 2) }}</strong></h3>
+            <p class="">Product Description: <br> {{ $product->description }}</p>
             <br>
             <form action="{{ route('make_order', $product) }} " method="POST" enctype="multipart/form-data">
                 @csrf
@@ -28,11 +28,25 @@
                 </div>
                 <div class="form-group">
                     <label for="schedule">Select a Schedule</label>
-                    <input type="date" name="scheduleDate" class="form-control" required>
+                    <input type="date" name="scheduleDate" class="form-control" id="scheduleDate" required>
                 </div>
                 <button type="submit" class="btn-darkblue btn-block mt-4" style="padding: 5px 5px">Submit</button>
             </form>
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Set the minimum date to tomorrow's date
+        const scheduleDateInput = document.getElementById("scheduleDate");
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 7);
+        const year = tomorrow.getFullYear();
+        const month = String(tomorrow.getMonth() + 1).padStart(2, '0');
+        const day = String(tomorrow.getDate()).padStart(2, '0');
+        scheduleDateInput.min = `${year}-${month}-${day}`;
+    });
+</script>
 @endsection

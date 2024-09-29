@@ -3,9 +3,9 @@
 @section('content')
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h3>Order List</h3>
+        <h1>Order List</h1>
         {{-- ganti iconnya jangan lupa --}}
-        <button class="btn btn-darkblue"><i class="fas fa-plus" style="padding: 5px 5px"></i> Report</button>
+        <button class="btn btn-darkblue"><i class="bi bi-file-earmark-bar-graph me-1"></i></i> Report</button>
     </div>
     <div class="table-responsive">
         <table class="table">
@@ -49,12 +49,12 @@
                             <form action="{{ route('show_order_detail', $order) }}" method="get" >
                                 <button type="submit" class="btn btn-darkblue me-1"><i class="bi bi-card-text"></i></button>
                             </form>
-                            <form action="{{ route('complete_order_admin', $order) }}" method="post" >
+                            <form action="{{ route('complete_order_admin', $order) }}" method="post" onsubmit="return confirm('Are you sure you want to mark this order as Complete?');">
                                 @method('patch')
                                 @csrf
                                 <button type="submit" class="btn btn-green me-1"><i class="bi bi-check-circle"></i></button>
                             </form>
-                            <form action="{{ route('cancel_order_admin', $order) }}" method="post" >
+                            <form action="{{ route('cancel_order_admin', $order) }}" method="post" onsubmit="return confirm('Are you sure you want to cancel this order?');">
                                 @method('patch')
                                 @csrf
                                 <button type="submit" class="btn btn-red me-1"><i class="bi bi-x-circle"></i></button>
