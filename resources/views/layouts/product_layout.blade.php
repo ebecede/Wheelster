@@ -24,19 +24,22 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav mx-auto text-center">
-                    @auth
-                        @if(Auth::user()->is_admin)
-                            <!-- Admin-specific links -->
-                            <a class="nav-link me-3" href="{{ route('home') }}">Home</a>
-                            <a class="nav-link me-3" href="{{ route('index_product_admin') }}">Product</a>
-                            <a class="nav-link me-3" href="{{ route('show_all_order') }}">Order</a>
-                        @else
-                            <!-- User-specific links -->
-                            <a class="nav-link me-3" href="{{ route('home') }}">Home</a>
-                            <a class="nav-link me-3" href="{{ route('index_product') }}">Product</a>
-                            <a class="nav-link me-3" href="{{ route('show_order') }}">Transaction</a>
-                        @endif
-                    @endauth
+                    <!-- Links visible to all users -->
+                <a class="nav-link me-3" href="{{ route('home') }}">Home</a>
+                @auth
+                    @if(Auth::user()->is_admin)
+                        <!-- Admin-specific links -->
+                        <a class="nav-link me-3" href="{{ route('index_product_admin') }}">Product</a>
+                        <a class="nav-link me-3" href="{{ route('show_all_order') }}">Order</a>
+                    @else
+                        <!-- User-specific links -->
+                        <a class="nav-link me-3" href="{{ route('index_product') }}">Product</a>
+                        <a class="nav-link me-3" href="{{ route('show_order') }}">Transaction</a>
+                    @endif
+                @else
+                    <!-- Guest-specific links -->
+                    <a class="nav-link me-3" href="{{ route('index_product') }}">Product</a>
+                @endauth
                 </div>
                 <div class="d-flex justify-content-center mt-2 mt-lg-0 me-3">
                     @guest

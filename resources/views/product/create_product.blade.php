@@ -2,9 +2,12 @@
 
 @section('content')
 <div class="container col-md-4 backblue my-5">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+        <a href="{{ url()->previous() }}" style="color: black"><i class="bi bi-arrow-left"></i></a>
+        <h1 class="text-center flex-grow-1">Add New Product</h1>
+    </div>
     <div class="row">
         <div class="col-md-12">
-            <h1>Add New Product</h1>
             <form action="{{ route('store_product') }}" method="post" enctype="multipart/form-data"> <!-- Correct action route -->
                 @csrf
                 <div class="form-group">

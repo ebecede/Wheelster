@@ -3,8 +3,9 @@
 @section('content')
 <div class="container col-md-4 backblue">
     <div class="text-center">
-        <h1>Login</h1> <br>
+        <h1>Login</h1>
     </div>
+    <hr style="border-color: black;"> <br>
     <form method="POST" action="{{ route('login') }}">
         @csrf
 

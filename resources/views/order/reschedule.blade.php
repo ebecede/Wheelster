@@ -3,13 +3,13 @@
 @section('content')
 
 <div class="container col-md-4 backblue my-5">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+        <a href="{{ url()->previous() }}" style="color: black"><i class="bi bi-arrow-left"></i></a>
+        <h1 class="text-center flex-grow-1">Reschedule Form</h1>
+    </div>
+    <hr style="border-color: black;"> <br>
     <div class="row">
         <div class="col-md-12">
-            <h1>Reschedule</h1>
-            {{-- <img src="{{ url('storage/public/' . $order->product->image) }}" alt="" height="100px">
-            <h1>{{ $order->product->name }}</h1>
-            <h5 class=""><strong>Rp {{ number_format($order->product->price, 2) }}</strong></h5>
-            <p class="card-text">Product Description: <br>{{ $order->product->description }}</p> --}}
             <form action="{{ route('reschedule_order', $order) }} " method="POST" enctype="multipart/form-data">
                 @method('patch')
                 @csrf

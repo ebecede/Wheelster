@@ -22,7 +22,7 @@
                             <p class="card-text"><strong>Rp {{ number_format($product->price, 2) }}</strong></p>
                             <form action="{{ route('show_product', $product) }}" method="get">
                                 @csrf
-                                <button type="submit" class="btn btn-darkblue">Show Detail</button>
+                                <button type="submit" class="btn btn-darkblue">Order</button>
                             </form>
                         </div>
                     </div>

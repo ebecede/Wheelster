@@ -2,6 +2,11 @@
 
 @section('content')
 <div class="container col-md-4 backblue my-5">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+        <a href="{{ url()->previous() }}" style="color: black" ><i class="bi bi-arrow-left"></i></a>
+        <h1 class="text-center flex-grow-1">Edit Product</h1>
+    </div>
+    <hr style="border-color: black;">
     <div class="row">
         <div class="col-md-12">
             <h1></h1>

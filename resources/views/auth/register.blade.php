@@ -3,9 +3,9 @@
 @section('content')
 <div class="container col-md-5 backblue">
     <div class="text-center">
-        <h1>Register</h1> <br>
+        <h1>Register</h1>
     </div>
-
+    <hr style="border-color: black;"> <br>
     <div class="row justify-content-center">
         <div class="col-md-12">
             <form method="POST" action="{{ route('register') }}">
