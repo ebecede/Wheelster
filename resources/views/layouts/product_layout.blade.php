@@ -23,39 +23,32 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav mx-auto text-center" >
-                    <div class="navbar-nav mx-auto text-center">
-                        <!-- Links visible to all users -->
-                        <a class="nav-link me-3" href="{{ route('home') }}">Home</a>
-                        <a class="nav-link me-3" href="#about">About Us</a>
-                        <a class="nav-link me-3" href="#services">Services</a>
-                        <a class="nav-link me-3" href="#team">Team</a>
-                        <a class="nav-link me-3" href="#contact">Contact Us</a>
-
-                        @auth
-                            @if(Auth::user()->is_admin)
-                                <!-- Admin-specific links -->
-                                <a class="nav-link me-3" href="{{ route('index_product_admin') }}">Product</a>
-                                <a class="nav-link me-3" href="{{ route('show_all_order') }}">Order</a>
-                            @else
-                                <!-- User-specific links -->
-                                <a class="nav-link me-3" href="{{ route('index_product') }}">Product</a>
-                                <a class="nav-link me-3" href="{{ route('show_order') }}">Transaction</a>
-                            @endif
-                        @else
-                            <!-- Guest-specific links -->
-                            <a class="nav-link me-3" href="{{ route('index_product') }}">Product</a>
-                        @endauth
-                    </div>
+                <div class="navbar-nav mx-auto text-center">
+                    <!-- Links visible to all users -->
+                <a class="nav-link me-3" href="{{ route('home') }}">Home</a>
+                @auth
+                    @if(Auth::user()->is_admin)
+                        <!-- Admin-specific links -->
+                        <a class="nav-link me-3" href="{{ route('index_product_admin') }}">Product</a>
+                        <a class="nav-link me-3" href="{{ route('show_all_order') }}">Order</a>
+                    @else
+                        <!-- User-specific links -->
+                        <a class="nav-link me-3" href="{{ route('index_product') }}">Product</a>
+                        <a class="nav-link me-3" href="{{ route('show_order') }}">Transaction</a>
+                    @endif
+                @else
+                    <!-- Guest-specific links -->
+                    <a class="nav-link me-3" href="{{ route('index_product') }}">Product</a>
+                @endauth
                 </div>
                 <div class="d-flex justify-content-center mt-2 mt-lg-0 me-3">
                     @guest
                         @if (Route::has('login'))
-                                <a class="btn btn-white me-2" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="btn btn-white me-2" href="{{ route('login') }}">{{ __('Login') }}</a>
                         @endif
 
                         @if (Route::has('register'))
-                                <a class="btn btn-white" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="btn btn-white" href="{{ route('register') }}">{{ __('Register') }}</a>
                         @endif
                     @else
                         <div class="nav-item dropdown">
@@ -75,8 +68,7 @@
                                 </form>
                             </div>
                         </div>
-                    @endguest
-                    {{-- <a href="{{ route('login') }}" class="btn btn-white">Sign In</a> --}}
+                    @endauth
                 </div>
             </div>
         </div>
