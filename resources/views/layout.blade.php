@@ -33,7 +33,34 @@
                     <a class="nav-link me-3" href="{{ route('show_order') }}">Transaction</a>
                 </div>
                 <div class="d-flex justify-content-center mt-2 mt-lg-0 me-3">
-                    <a href="{{ route('login') }}" class="btn btn-white">Sign In</a>
+                    @guest
+                        @if (Route::has('login'))
+                                <a class="btn btn-white me-2" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        @endif
+
+                        @if (Route::has('register'))
+                                <a class="btn btn-white" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        @endif
+                    @else
+                        <div class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </div>
+                    @endguest
+                    {{-- <a href="{{ route('login') }}" class="btn btn-white">Sign In</a> --}}
                 </div>
             </div>
         </div>
