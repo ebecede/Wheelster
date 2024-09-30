@@ -45,7 +45,7 @@
                             <a href="{{ route('reschedule', $order) }}" class="btn btn-darkblue me-2">
                                 <i class="bi bi-pencil-square"></i>
                             </a>
-                            <form action="{{ route('cancel_order', $order) }}" method="post" >
+                            <form action="{{ route('cancel_order', $order) }}" method="post" onsubmit="return confirm('Are you sure you want to cancel this order?');">
                                 @method('patch')
                                 @csrf
                                 <button type="submit" class="btn btn-red"><i class="bi bi-x-circle"></i></button>

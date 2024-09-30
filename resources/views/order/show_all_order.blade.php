@@ -4,7 +4,6 @@
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h1>Order List</h1>
-        {{-- ganti iconnya jangan lupa --}}
         <button class="btn btn-darkblue"><i class="bi bi-file-earmark-bar-graph me-1"></i></i> Report</button>
     </div>
     <div class="table-responsive">
@@ -29,8 +28,6 @@
                     <td>{{ $order->product->name }}</td>
                     {{-- Display Schedule Date --}}
                     <td>{{ $order->scheduleDate }}</td>
-                    {{-- Display Product Price --}}
-                    {{-- <td>Rp {{ number_format($order->product->price, 2) }}</td> --}}
                     {{-- Display Order Status with Badge Styling --}}
                     <td>
                         @if ($order->status == 'In Progress')

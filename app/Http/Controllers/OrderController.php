@@ -11,11 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    public function __contruct()
-    {
-        this->middleware('auth');
-    }
-
     // Customer
     public function make_order(Product $product, Request $request)
     {
@@ -145,15 +140,5 @@ class OrderController extends Controller
 
         return Redirect::route('show_all_order');
     }
-
-
-    // public function viewAllorder()
-    // {
-    //     $orders = order::paginate(12); // 12 orders per page
-    //     return view('order.orders', compact('orders'));
-    // }
-
-
-
 }
 
