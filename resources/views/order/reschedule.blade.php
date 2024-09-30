@@ -15,7 +15,7 @@
                 @csrf
                 <div class="form-group">
                     <label for="schedule">Select a Schedule</label>
-                    <input type="date" name="scheduleDate" class="form-control" required>
+                    <input type="date" name="scheduleDate" class="form-control" required min="{{ now()->addDays(7)->toDateString() }}">
                 </div>
                 <button type="submit" class="btn-darkblue btn-block mt-4" style="padding: 5px 5px">Submit</button>
             </form>

@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function viewHomePage()
     {
-        return view('home_user');
+        return view('home');
     }
 
     public function register(Request $request)
