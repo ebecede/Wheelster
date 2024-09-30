@@ -135,12 +135,12 @@
                                 <div class="col-md-4">
                                     <img src="{{ asset('images/Profile.png') }}" alt="Edward Wijaya" class="rounded-circle img-fluid mb-3">
                                     <h5 class="card-title">Edward Wijaya</h5>
-                                    <p class="card-text">2502001385<br>Computer Science</p>
+                                    <p class="card-text">2540125434<br>Computer Science</p>
                                 </div>
                                 <div class="col-md-4">
                                     <img src="{{ asset('images/Profile.png') }}" alt="Matthew" class="rounded-circle img-fluid mb-3">
                                     <h5 class="card-title">Matthew</h5>
-                                    <p class="card-text">2540125434<br>Computer Science</p>
+                                    <p class="card-text">2502001385<br>Computer Science</p>
                                 </div>
                             </div>
                         </div>
@@ -175,43 +175,3 @@
         </div>
     </section>
 @endsection
-
-    {{-- <section id="team" class="py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <h2 class="fw-bold mb-4">Team</h2>
-                    <p>Our team consists of three students from Bina Nusantara University</p>
-                </div>
-            </div>
-            <div class="row justify-content-center mt-5">
-                <div class="col-md-4 mb-4">
-                    <div class="card text-center custom-card h-100">
-                        <div class="card-body">
-                            <img src="{{ asset('images/Profile.png') }}" alt="David Bonardo Purba" class="rounded-circle img-fluid mb-3">
-                            <h5 class="card-title">David Bonardo Purba</h5>
-                            <p class="card-text">2502010250<br>Computer Science</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card text-center custom-card h-100">
-                        <div class="card-body">
-                            <img src="{{ asset('images/Profile.png') }}" alt="Edward Wijaya" class="rounded-circle img-fluid mb-3">
-                            <h5 class="card-title">Edward Wijaya</h5>
-                            <p class="card-text">2502001385<br>Computer Science</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card text-center custom-card h-100">
-                        <div class="card-body">
-                            <img src="{{ asset('images/Profile.png') }}" alt="Matthew" class="rounded-circle img-fluid mb-3">
-                            <h5 class="card-title">Matthew</h5>
-                            <p class="card-text">2540125434<br>Computer Science</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
