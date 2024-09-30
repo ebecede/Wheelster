@@ -45,7 +45,9 @@
                     <td>
                         @if ($order->status == 'In Progress')
                         <div class="d-flex">
-                            <button type="submit" class="btn btn-darkblue me-1"><i class="bi bi-pencil-square"></i></button>
+                            <form action="{{ route('edit_order', $order) }}" method="get" >
+                                <button type="submit" class="btn btn-darkblue me-1"><i class="bi bi-pencil-square"></i></button>
+                            </form>
                             <form action="{{ route('show_order_detail', $order) }}" method="get" >
                                 <button type="submit" class="btn btn-darkblue me-1"><i class="bi bi-card-text"></i></button>
                             </form>

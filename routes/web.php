@@ -35,7 +35,9 @@ Route::delete('/product/{product}',[ProductController::class, 'delete_product'])
 // EDITnya blm
 Route::get('/order', [OrderController::class, 'show_all_order'])->name('show_all_order');
 Route::get('/order/{order}', [OrderController::class, 'show_order_detail'])->name('show_order_detail');
-Route::patch('/order/{order}/update',[OrderController::class, 'reschedule_order'])->name('reschedule_order');
+Route::get('/order/{order}/edit',[OrderController::class, 'edit_order'])->name('edit_order');
+Route::patch('/order/{order}/update',[OrderController::class, 'update_order'])->name('update_order');
+Route::patch('/order/{order}/reschedule',[OrderController::class, 'reschedule_order'])->name('reschedule_order');
 Route::patch('/order/{order}/cancel', [OrderController::class, 'cancel_order_admin'])->name('cancel_order_admin');
 Route::patch('/order/{order}/complete', [OrderController::class, 'complete_order_admin'])->name('complete_order_admin');
 

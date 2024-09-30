@@ -109,6 +109,43 @@ class OrderController extends Controller
         return Redirect::route('show_all_order');
     }
 
+    public function edit_order(Order $order){
+        $products = Product::all();
+        $product  = Product::where('id', $order->product_id)->first();
+        return view('order.edit_order', compact('order','products','product'));
+    }
+
+    public function update_order(Order $order, Request $request)
+    {
+        // Validate the incoming request
+        $request->validate([
+            'vehicleName' => 'required|string',
+            'scheduleDate' => 'required|date',
+            'product_id' => 'required|exists:products,id',
+            'steeringWheelPhoto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Make this nullable and allow image upload
+        ]);
+
+        $data = [
+            'vehicleName' => $request->vehicleName,
+            'scheduleDate' => $request->scheduleDate,
+            'product_id' => $request->product_id,
+        ];
+
+        if ($request->hasFile('steeringWheelPhoto')) {
+            $file = $request->file('steeringWheelPhoto');
+            $path = time() . '_steeringWheelPhoto_' . $order->id . "." . $file->getClientOriginalExtension();
+
+            Storage::disk('public')->put('public/' . $path, file_get_contents($file));
+            $data['steeringWheelPhoto'] = $path;
+        } else {
+            $data['steeringWheelPhoto'] = $order->steeringWheelPhoto;
+        }
+
+        $order->update($data);
+
+        return Redirect::route('show_all_order');
+    }
+
 
     // public function viewAllorder()
     // {
