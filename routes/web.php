@@ -16,7 +16,7 @@ Route::get('/', [UserController::class, 'viewHomePage'])->name('home');
 Route::get('/product', [ProductController::class, 'index_product'])->name('index_product');
 
 // CUSTOMER
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'customer'])->group(function () {
     Route::get('/product/{product}',[ProductController::class, 'show_product'])->name('show_product');
     Route::get('/transaction', [OrderController::class, 'show_order'])->name('show_order');
     Route::get('/transaction/{order}/edit',[OrderController::class, 'reschedule'])->name('reschedule');
@@ -26,14 +26,14 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // ADMIN
-Route::middleware(['auth', 'Admin'])->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
     // CRUD PRODUCT for ADMIN
     Route::get('/products/create', [ProductController::class, 'create_product'])->name('create_product');
     Route::post('/products/create', [ProductController::class, 'store_product'])->name('store_product');
     Route::get('/products', [ProductController::class, 'index_product_admin'])->name('index_product_admin');
-    Route::get('/product/{product}/edit',[ProductController::class, 'edit_product'])->name('edit_product');
-    Route::patch('/product/{product}/update',[ProductController::class, 'update_product'])->name('update_product');
-    Route::delete('/product/{product}',[ProductController::class, 'delete_product'])->name('delete_product');
+    Route::get('/products/{product}/edit',[ProductController::class, 'edit_product'])->name('edit_product');
+    Route::patch('/products/{product}/update',[ProductController::class, 'update_product'])->name('update_product');
+    Route::delete('/products/{product}',[ProductController::class, 'delete_product'])->name('delete_product');
 
     // CRUD ORDER for ADMIN
     Route::get('/order', [OrderController::class, 'show_all_order'])->name('show_all_order');

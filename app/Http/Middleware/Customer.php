@@ -5,10 +5,8 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 
-class Admin
+class Customer
 {
     /**
      * Handle an incoming request.
@@ -17,10 +15,10 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->check() && auth()->user()->is_admin) {
+        if (auth()->check() && !auth()->user()->is_admin) {
             return $next($request);
         }
 
-        return redirect('/'); // Redirect if the user is not an admin
+        return redirect('/'); // Redirect if the user is an admin
     }
 }
