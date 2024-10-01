@@ -8,6 +8,8 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\OrderExport;
 
 class OrderController extends Controller
 {
@@ -139,6 +141,31 @@ class OrderController extends Controller
         $order->update($data);
 
         return Redirect::route('show_all_order');
+    }
+
+    // Display the order list with filtering by month
+    public function index(Request $request)
+    {
+        $query = Order::with('user', 'product');
+
+        // Filter by month and year if selected
+        if ($request->has('month')) {
+            $selectedMonth = $request->month;
+            $query->whereYear('scheduleDate', '=', date('Y', strtotime($selectedMonth)))
+                  ->whereMonth('scheduleDate', '=', date('m', strtotime($selectedMonth)));
+        }
+
+        $orders = $query->paginate(10);
+
+        return view('order.show_all_order', compact('orders'));
+    }
+
+    // Export the orders to Excel based on the month filter
+    public function export_report(Request $request)
+    {
+        $month = $request->input('month');
+
+        return Excel::download(new OrderExport($month), 'orders_report.xlsx');
     }
 }
 

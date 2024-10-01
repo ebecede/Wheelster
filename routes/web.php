@@ -42,6 +42,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::patch('/order/{order}/update',[OrderController::class, 'update_order'])->name('update_order');
     Route::patch('/order/{order}/cancel', [OrderController::class, 'cancel_order_admin'])->name('cancel_order_admin');
     Route::patch('/order/{order}/complete', [OrderController::class, 'complete_order_admin'])->name('complete_order_admin');
+
+    Route::get('/orders', [OrderController::class, 'index'])->name('order_list');
+    Route::get('/orders/report', [OrderController::class, 'export_report'])->name('order_report');
 });
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
