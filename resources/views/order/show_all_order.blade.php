@@ -7,7 +7,7 @@
         <div>
             <form action="{{ route('order_list') }}" method="GET" class="d-flex">
                 <input type="month" name="month" class="form-control me-2" value="{{ request()->month }}">
-                <button type="submit" class="btn btn-primary">Filter</button>
+                <button type="submit" class="btn btn-darkblue">Filter</button>
             </form>
         </div>
         <form action="{{ route('order_report') }}" method="GET">
