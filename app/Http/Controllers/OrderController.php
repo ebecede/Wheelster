@@ -49,7 +49,7 @@ class OrderController extends Controller
     public function show_order()
     {
         $user_id = Auth::id();
-        $orders = Order::where('user_id', $user_id)->get();
+        $orders = Order::where('user_id', $user_id)->orderBy('updated_at', 'desc')->orderBy('created_at', 'desc')->get();
         return view('order.show_order', compact('orders'));
     }
 
@@ -85,7 +85,16 @@ class OrderController extends Controller
     // ADMIN
     public function show_all_order()
     {
-        $orders = Order::with('product')->paginate(10);
+        $query = Order::with('product', 'user'); // Eager load related models
+
+        // Apply filter if the 'month' parameter is provided
+        if ($request->has('month') && $request->month != null) {
+            $query->whereMonth('scheduleDate', '=', date('m', strtotime($request->month)))
+                  ->whereYear('scheduleDate', '=', date('Y', strtotime($request->month)));
+        }
+
+        $orders = $query->orderBy('created_at', 'desc')->paginate(10);
+        // $orders = Order::with('product')->orderBy('scheduleDate', 'desc')->orderBy('created_at', 'desc')->paginate(10);
         return view('order.show_all_order', compact('orders'));
     }
 
@@ -165,7 +174,17 @@ class OrderController extends Controller
     {
         $month = $request->input('month');
 
-        return Excel::download(new OrderExport($month), 'orders_report.xlsx');
+        // Check if a month is provided
+        if ($month) {
+            $monthFormatted = date('F_Y', strtotime($month)); // Format month as 'Month_Year'
+            $fileName = "{$monthFormatted}_Report.xlsx";
+        } else {
+            $fileName = 'Report.xlsx';
+        }
+
+        return Excel::download(new OrderExport($month), $fileName);
     }
+
+
 }
 
