@@ -4,15 +4,17 @@
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h1>Order List</h1>
-        <div>
-            <form action="{{ route('order_list') }}" method="GET" class="d-flex">
-                <input type="month" name="month" class="form-control me-2" value="{{ request()->month }}">
-                <button type="submit" class="btn btn-darkblue">Filter</button>
-            </form>
-        </div>
+
         <form action="{{ route('order_report') }}" method="GET">
             <input type="hidden" name="month" value="{{ request()->month }}">
             <button type="submit" class="btn btn-darkblue"><i class="bi bi-file-earmark-bar-graph me-1"></i> Report</button>
+        </form>
+    </div>
+    <div class="col-md-4">
+        <form action="{{ route('order_list') }}" method="GET" class="d-flex">
+            <input type="month" name="month" class="form-control me-2" value="{{ request()->month }}">
+            <button type="submit" class="btn btn-darkblue">Filter</button>
+            <a href="{{ route('order_list') }}" class="btn btn-secondary ms-2" style="border-radius: 12px">Clear</a>
         </form>
     </div>
     <div class="table-responsive">
@@ -36,7 +38,7 @@
                     {{-- Display Product Name --}}
                     <td>{{ $order->product->name }}</td>
                     {{-- Display Schedule Date --}}
-                    <td>{{ $order->scheduleDate }}</td>
+                    <td>{{ \Carbon\Carbon::parse($order->scheduleDate)->format('l, d M Y') }}</td>
                     {{-- Display Order Status with Badge Styling --}}
                     <td>
                         @if ($order->status == 'In Progress')

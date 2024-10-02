@@ -26,9 +26,7 @@
                     {{-- Display Product Price --}}
                     <td>Rp {{ number_format($order->product->price, 2) }}</td>
                     {{-- Display Order Status with Badge Styling --}}
-                    <td>
-                        {{ $order->scheduleDate }}
-                    </td>
+                    <td>{{ \Carbon\Carbon::parse($order->scheduleDate)->format('l, d M Y') }}</td>
                     <td>
                         @if ($order->status == 'In Progress')
                             <span class="badge bg-warning text-dark">In Progress</span>
