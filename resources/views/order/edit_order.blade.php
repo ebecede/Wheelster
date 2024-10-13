@@ -9,7 +9,7 @@
     <hr style="border-color: black;"> <br>
     <div class="row">
         <div class="col-md-6 text-center">
-            <img id="productImage" src="{{ url('storage/public/' . $product->image) }}" alt="Product Image" height="500px" width="500px">
+            <img id="productImage" src="{{ url('storage/public/' . $product->image) }}" alt="Product Image" max-height="100%" object-fit="contain" height = "400px">
             <h4 class="card-text mt-3"><strong id="productDetails">{{ $product->name }} - Rp {{ number_format($product->price, 2) }}</strong></h4>
         </div>
         <div class="col-md-6">

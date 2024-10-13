@@ -37,6 +37,7 @@
                                 <!-- Admin-specific links -->
                                 <a class="nav-link me-3" href="{{ route('index_product_admin') }}">Product</a>
                                 <a class="nav-link me-3" href="{{ route('show_all_order') }}">Order</a>
+                                <a class="nav-link me-3" href="{{ route('view_report') }}">Report</a>
                             @else
                                 <!-- User-specific links -->
                                 <a class="nav-link me-3" href="{{ route('index_product') }}">Product</a>
@@ -135,6 +136,7 @@
             </div>
         </div>
     </footer>
+    @yield('scripts')
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

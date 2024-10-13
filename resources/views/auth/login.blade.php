@@ -20,9 +20,12 @@
             @enderror
         </div>
 
-        <div class="mb-3">
+        <div class="mb-3 position-relative">
             <label for="password" class="form-label">{{ __('Password') }}</label>
-            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
+            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password" style="padding-right: 40px;">
+            <button type="button" onclick="togglePasswordVisibility()" class="btn btn-light position-absolute bottom-0 end-0" style="border:none; background-color: transparent;">
+                <i id="toggleIcon" class="bi bi-eye-slash"></i>
+            </button>
 
             @error('password')
                 <span class="invalid-feedback" role="alert">
@@ -54,7 +57,25 @@
     <br>
     <hr style="border-color: black;">
     <div class="text-center mt-4">
-        <p>Don't have an account? <strong><a href="{{ route('register') }} " style="color: black; text-decoration: none;">Sign Up</a></strong></p>
+        <p>Don't have an account? <strong><a href="{{ route('register') }}" style="color: black; text-decoration: none;">Sign Up</a></strong></p>
     </div>
 </div>
+
+@endsection
+
+@section('scripts')
+<script>
+    function togglePasswordVisibility() {
+        var passwordInput = document.getElementById('password');
+        var toggleIcon = document.getElementById('toggleIcon');
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            toggleIcon.className = 'bi bi-eye'; // Change icon to open eye
+        } else {
+            passwordInput.type = 'password';
+            toggleIcon.className = 'bi bi-eye-slash'; // Change icon back to eye slash
+        }
+    }
+</script>
+
 @endsection

@@ -4,11 +4,6 @@
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h1>Order List</h1>
-
-        <form action="{{ route('order_report') }}" method="GET">
-            <input type="hidden" name="month" value="{{ request()->month }}">
-            <button type="submit" class="btn btn-darkblue"><i class="bi bi-file-earmark-bar-graph me-1"></i> Report</button>
-        </form>
     </div>
     <div class="col-md-4">
         <form action="{{ route('order_list') }}" method="GET" class="d-flex">

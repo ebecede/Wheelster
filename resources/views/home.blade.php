@@ -130,7 +130,7 @@
                                 <div class="col-md-4">
                                     <img src="{{ asset('images/Profile.png') }}" alt="David Bonardo Purba" class="rounded-circle img-fluid mb-3">
                                     <h5 class="card-title">David Bonardo Purba</h5>
-                                    <p class="card-text">2502010250<br>Computer Science</p>
+                                    <p class="card-text">2502001385<br>Computer Science</p>
                                 </div>
                                 <div class="col-md-4">
                                     <img src="{{ asset('images/Profile.png') }}" alt="Edward Wijaya" class="rounded-circle img-fluid mb-3">
@@ -140,7 +140,7 @@
                                 <div class="col-md-4">
                                     <img src="{{ asset('images/Profile.png') }}" alt="Matthew" class="rounded-circle img-fluid mb-3">
                                     <h5 class="card-title">Matthew</h5>
-                                    <p class="card-text">2502001385<br>Computer Science</p>
+                                    <p class="card-text">2502010250<br>Computer Science</p>
                                 </div>
                             </div>
                         </div>

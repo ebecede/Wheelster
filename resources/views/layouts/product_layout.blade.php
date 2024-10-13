@@ -31,6 +31,7 @@
                         <!-- Admin-specific links -->
                         <a class="nav-link me-3" href="{{ route('index_product_admin') }}">Product</a>
                         <a class="nav-link me-3" href="{{ route('show_all_order') }}">Order</a>
+                        <a class="nav-link me-3" href="{{ route('view_report') }}">Report</a>
                     @else
                         <!-- User-specific links -->
                         <a class="nav-link me-3" href="{{ route('index_product') }}">Product</a>

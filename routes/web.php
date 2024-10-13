@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReportController;
 
 // AUTH
 Auth::routes();
@@ -47,6 +48,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/orders', [OrderController::class, 'index'])->name('order_list');
     Route::get('/orders/report', [OrderController::class, 'export_report'])->name('order_report');
+
+    //Report Routes for ADMIN
+    Route::get('/reports', [ReportController::class, 'index_report'])->name('view_report');
 });
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

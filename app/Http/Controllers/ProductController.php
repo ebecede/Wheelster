@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Brand;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 
@@ -11,13 +12,15 @@ class ProductController extends Controller
 {
     public function create_product()
     {
-        return view('product.create_product');
+        $brands = Brand::all();
+        return view('product.create_product',compact('brands'));
     }
 
     public function store_product(Request $request)
     {
         $request->validate([
             'name' => 'required',
+            'brand_id' => 'required',
             'price' => 'required',
             'description' => 'required',
             'stock'=>'required',
@@ -31,6 +34,7 @@ class ProductController extends Controller
 
         Product::create([
             'name' => $request->name,
+            'brand_id' => $request->brand_id,
             'price' => $request->price,
             'description' => $request->description,
             'stock' => $request->stock,
@@ -59,7 +63,8 @@ class ProductController extends Controller
 
     public function edit_product(Product $product)
     {
-        return view('product.edit_product', compact('product'));
+        $brands = Brand::all();
+        return view('product.edit_product', compact('product','brands'));
     }
 
     public function update_product(Product $product, Request $request)

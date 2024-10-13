@@ -1,6 +1,7 @@
 @extends('admin.admin_layout')
 
 @section('content')
+{{-- WARNING!! THIS TEMPLATE IS NOT USED --}}
     <section id="home" class="bg-dark text-white py-5 bg-image">
         <div class="container">
             <div class="row">

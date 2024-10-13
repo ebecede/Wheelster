@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('price');
+            $table->foreignId('brand_id')->constrained('brands')->onUpdate('cascade')->onDelete('cascade');
             $table->text('description');
             $table->integer('stock');
             $table->string('image');
