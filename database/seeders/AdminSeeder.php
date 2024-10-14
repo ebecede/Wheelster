@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AdminSeeder extends Seeder
 {
@@ -13,15 +15,12 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'name' => 'Admin Main',
-            'phoneNumber' => '1234567890',
-            'email' => 'admin@initial.com',
-            'address' => '123 Admin St',
-            'gender' => 'male',
-            'DOB' => '2001-01-01',
-            'role' => 'admin',
-            'password' => bcrypt('adminPassword'),
+        DB::table('users')->insert([
+            'id'=> 1,
+            'name' => 'Admin',
+            'email' => 'admin@admin.com',
+            'password' => Hash::make('12345678'),
+            'is_admin' => true
         ]);
     }
 }

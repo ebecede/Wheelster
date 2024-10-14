@@ -12,7 +12,7 @@
                     <th scope="col">Product Image</th>
                     <th scope="col">Product Name</th>
                     <th scope="col">Price</th>
-                    <th scope="col">Date</th>
+                    <th scope="col">Schedule</th>
                     <th scope="col">Status</th>
                     <th scope="col">Actions</th>
                 </tr>
@@ -22,7 +22,7 @@
                 <tr>
                     <td><img src="{{ url('storage/public/' . $order->product->image) }}" alt="" height="100px">
                     {{-- Display Product Name --}}
-                    <td>{{ $order->product->name }}</td>
+                    <td>{{ $order->product->name }} <br>({{ $order->product->brand->brandName }})</td>
                     {{-- Display Product Price --}}
                     <td>Rp {{ number_format($order->product->price, 2) }}</td>
                     {{-- Display Order Status with Badge Styling --}}

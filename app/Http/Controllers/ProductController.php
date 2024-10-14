@@ -44,11 +44,26 @@ class ProductController extends Controller
         return Redirect::route('index_product_admin');
     }
 
-    public function index_product()
+    public function index_product(Request $request)
     {
-        $products = Product::paginate(5);
-        return view('product.index_product', compact('products'));
+        // Fetch all available brands for the filter dropdown
+        $brands = Brand::all();
+
+        // Check if the user selected a brand for filtering
+        $brand_id = $request->input('brand');
+
+        if ($brand_id) {
+            // Filter products by the selected brand
+            $products = Product::where('brand_id', $brand_id)->paginate(5);
+        } else {
+            // Display all products if no brand is selected
+            $products = Product::paginate(12);
+        }
+
+        // Return the view with products and brands data
+        return view('product.index_product', compact('products', 'brands', 'brand_id'));
     }
+
 
     public function index_product_admin()
     {
@@ -71,6 +86,7 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'brand_id' => 'required',
             'price' => 'required',
             'description' => 'required',
             'stock' => 'required',
@@ -79,6 +95,7 @@ class ProductController extends Controller
 
         $data = [
             'name' => $request->name,
+            'brand_id' => $request->brand_id,
             'price' => $request->price,
             'description' => $request->description,
             'stock' => $request->stock,

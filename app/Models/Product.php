@@ -24,7 +24,7 @@ class Product extends Model
 
     public function brand()
     {
-        return $this->hasOne(Brand::class);
+        return $this->belongsTo(Brand::class);
     }
 
 }
