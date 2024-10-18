@@ -13,7 +13,7 @@ use App\Exports\OrderExport;
 
 class OrderController extends Controller
 {
-    // Customer
+    // CUSTOMER
     public function make_order(Product $product, Request $request)
     {
 
@@ -58,11 +58,6 @@ class OrderController extends Controller
         return view('order.reschedule', compact('order'));
     }
 
-    // public function edit_order(Order $oder)
-    // {
-    //     return view('order.edit_order', compact('oder'));
-    // }
-
     public function reschedule_order(Order $order, Request $request)
     {
         $request->validate([
@@ -83,7 +78,7 @@ class OrderController extends Controller
     }
 
     // ADMIN
-    public function show_all_order()
+    public function show_all_order(Request $request)
     {
         $query = Order::with('product', 'user'); // Eager load related models
 
@@ -93,7 +88,7 @@ class OrderController extends Controller
                   ->whereYear('scheduleDate', '=', date('Y', strtotime($request->month)));
         }
 
-        $orders = $query->orderBy('created_at', 'desc')->paginate(10);
+        $orders = $query->orderBy('id', 'desc')->paginate(10);
         // $orders = Order::with('product')->orderBy('scheduleDate', 'desc')->orderBy('created_at', 'desc')->paginate(10);
         return view('order.show_all_order', compact('orders'));
     }

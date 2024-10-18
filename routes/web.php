@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TestMail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -48,3 +50,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/send-email', function () {
+    Mail::to('edwardwijaya8765@gmail.com')->send(new \App\Mail\ExampleMail());
+    return 'Email Sent';
+});

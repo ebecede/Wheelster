@@ -17,19 +17,22 @@
                 <div class="card custom-card h-100 shadow-sm text-decoration-none">
                     <img src="{{ url('storage/public/' . $product->image) }}" alt="" height="100px" style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $product->name }}</h5>
-                        <p class="card-text"><strong>Rp {{ number_format($product->price, 2) }}</strong></p>
-
-                        @auth
+                        <p class="card-title"><strong>{{ $product->name }}</strong></p>
+                        <h4 class="card-text" style="color: #091954"><strong>Rp {{ number_format($product->price, 2) }}</strong></h4>
+                        <p class="card-text">Stok: {{ $product->stock }}</p>
+                        <div class="text-center">
+                            @auth
                             <form action="{{ route('show_product', $product) }}" method="get">
                                 @csrf
-                                <button type="submit" class="btn btn-darkblue">Order</button>
+                                <button type="submit" class="btn btn-darkblue" style="padding-right: 30px; padding-left: 30px; ">Order</button>
                             </form>
-                        @endauth
+                            @endauth
 
-                        @guest
-                            <button class="btn btn-darkblue guest-order-button">Order</button>
-                        @endguest
+                            @guest
+                                <button class="btn btn-darkblue guest-order-button">Order</button>
+                            @endguest
+                        </div>
+
 
                     </div>
                 </div>
