@@ -51,6 +51,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     //Report Routes for ADMIN
     Route::get('/reports', [ReportController::class, 'index_report'])->name('view_report');
+    Route::get('/get-monthly-data/{year}', [ReportController::class, 'getMonthlyData'])->name('getMonthlyData');
+
 });
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
