@@ -43,6 +43,9 @@ class OrderController extends Controller
             'status' => $status,
         ]);
 
+        $product->stock -= 1;
+        $product->save();
+
         return Redirect::route('index_product');
     }
 
