@@ -18,7 +18,8 @@
                 <tr class="table-light">
                     <th scope="col">Customer Name</th>
                     <th scope="col">Product Name</th>
-                    <th scope="col">Schedule Date</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
                     <th scope="col">Status</th>
                     <th scope="col">Actions</th>
                 </tr>
@@ -34,19 +35,20 @@
                     <td>{{ $order->product->name }}</td>
                     {{-- Display Schedule Date --}}
                     <td>{{ \Carbon\Carbon::parse($order->scheduleDate)->format('l, d M Y') }}</td>
+                    <td>{{ $order->scheduleTime }}</td>
                     {{-- Display Order Status with Badge Styling --}}
                     <td>
-                        @if ($order->status == 'In Progress')
+                        @if ($order->status == 'In Progress' && !$order->trashed())
                             <span class="badge bg-warning text-dark">In Progress</span>
                         @elseif ($order->status == 'Complete')
                             <span class="badge bg-success">Complete</span>
-                        @elseif ($order->status == 'Cancelled')
+                        @elseif ($order->status == 'Cancelled' || $order->trashed())
                             <span class="badge bg-danger">Cancelled</span>
                         @endif
                     </td>
                     {{-- Conditional Action Buttons --}}
                     <td>
-                        @if ($order->status == 'In Progress')
+                        @if ($order->status == 'In Progress' && !$order->trashed())
                         <div class="d-flex">
                             <form action="{{ route('edit_order', $order) }}" method="get" >
                                 <button type="submit" class="btn btn-darkblue me-1"><i class="bi bi-pencil-square"></i></button>

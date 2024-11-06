@@ -17,6 +17,7 @@ Auth::routes();
 // GUEST
 Route::get('/', [UserController::class, 'viewHomePage'])->name('home');
 Route::get('/product', [ProductController::class, 'index_product'])->name('index_product');
+Route::post('/check-availability', [OrderController::class, 'checkAvailability'])->name('check_availability');
 
 // CUSTOMER
 Route::middleware(['auth', 'customer'])->group(function () {

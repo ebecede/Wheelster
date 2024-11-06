@@ -16,11 +16,11 @@ class OrderController extends Controller
     // CUSTOMER
     public function make_order(Product $product, Request $request)
     {
-
         $request->validate([
             'vehicleName' => 'required',
             'steeringWheelPhoto' => 'required',
             'scheduleDate' => 'required',
+            'scheduleTime' => 'required',
         ]);
 
         $user_id = Auth::id();
@@ -28,9 +28,18 @@ class OrderController extends Controller
         $amount = $product->price;
         $status = 'In Progress';
 
+        // Cek apakah jumlah order sudah mencapai batas maksimal di sesi yang dipilih
+        $maxOrder = $request->scheduleTime === '17:00 - 18:00' ? 1 : 2;
+        $orderCount = Order::where('scheduleDate', $request->scheduleDate)
+                            ->where('scheduleTime', $request->scheduleTime)
+                            ->count();
+
+        if ($orderCount >= $maxOrder) {
+            return back()->withErrors(['scheduleTime' => 'The selected session is fully booked. Please choose another time.']);
+        }
+
         $file = $request->file('steeringWheelPhoto');
         $path = time() . '_' . $request->name . "." . $file->getClientOriginalExtension();
-
         Storage::disk('public')->put('public/' . $path, file_get_contents($file));
 
         Order::create([
@@ -39,6 +48,7 @@ class OrderController extends Controller
             'vehicleName' => $request->vehicleName,
             'steeringWheelPhoto' => $path,
             'scheduleDate' => $request->scheduleDate,
+            'scheduleTime' => $request->scheduleTime,  // Tambahkan scheduleTime
             'amount' => $amount,
             'status' => $status,
         ]);
@@ -46,15 +56,49 @@ class OrderController extends Controller
         $product->stock -= 1;
         $product->save();
 
-        return Redirect::route('index_product');
+        return Redirect::route('show_order');
     }
+
+    public function checkAvailability(Request $request)
+    {
+        $scheduleDate = $request->input('scheduleDate');
+        $timeSlots = [
+            '09:00 - 11:00' => 2,
+            '11:00 - 13:00' => 2,
+            '13:00 - 15:00' => 2,
+            '15:00 - 17:00' => 2,
+            '17:00 - 18:00' => 1,
+        ];
+
+        $availability = [];
+
+        foreach ($timeSlots as $time => $maxOrder) {
+            // Count current orders that are not canceled
+            $orderCount = Order::where('scheduleDate', $scheduleDate)
+                                ->where('scheduleTime', $time)
+                                // ->where('status', '!=', 'Cancelled') // Exclude canceled orders
+                                ->count();
+
+            $availability[$time] = max($maxOrder - $orderCount, 0);
+        }
+
+        return response()->json($availability);
+    }
+
 
     public function show_order()
     {
         $user_id = Auth::id();
-        $orders = Order::where('user_id', $user_id)->orderBy('updated_at', 'desc')->orderBy('created_at', 'desc')->get();
+        // Ambil order yang sudah di-soft delete
+        $orders = Order::where('user_id', $user_id)
+                        ->orderBy('updated_at', 'desc')
+                        ->orderBy('created_at', 'desc')
+                        ->withTrashed() // Mengambil order yang sudah di-soft delete
+                        ->get();
+
         return view('order.show_order', compact('orders'));
     }
+
 
     public function reschedule(Order $order)
     {
@@ -76,7 +120,9 @@ class OrderController extends Controller
 
     public function cancel_order(Order $order)
     {
+        $order->delete();
         $order->update(['status' => 'Cancelled']);
+        $order->product->increment('stock', 1);
         return Redirect::route('show_order');
     }
 
@@ -91,7 +137,7 @@ class OrderController extends Controller
                   ->whereYear('scheduleDate', '=', date('Y', strtotime($request->month)));
         }
 
-        $orders = $query->orderBy('id', 'desc')->paginate(10);
+        $orders = $query->orderBy('id', 'desc')->withTrashed()->paginate(10);
         // $orders = Order::with('product')->orderBy('scheduleDate', 'desc')->orderBy('created_at', 'desc')->paginate(10);
         return view('order.show_all_order', compact('orders'));
     }
@@ -103,7 +149,9 @@ class OrderController extends Controller
 
     public function cancel_order_admin(Order $order)
     {
+        $order->delete();
         $order->update(['status' => 'Cancelled']);
+        $order->product->increment('stock', 1);
         return Redirect::route('show_all_order');
     }
 

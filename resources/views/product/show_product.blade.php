@@ -27,8 +27,14 @@
                     <input type="file" name="steeringWheelPhoto" class="form-control-file" required>
                 </div>
                 <div class="form-group">
-                    <label for="schedule">Select a Schedule</label>
+                    <label for="schedule">Select a Schedule Date</label>
                     <input type="date" name="scheduleDate" class="form-control" id="scheduleDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="scheduleTime">Select a Schedule Time</label>
+                    <select name="scheduleTime" class="form-control" required>
+                        
+                    </select>
                 </div>
                 <button type="submit" class="btn-darkblue btn-block mt-4" style="padding: 5px 5px">Submit</button>
             </form>
@@ -37,16 +43,50 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Set the minimum date to tomorrow's date
-        const scheduleDateInput = document.getElementById("scheduleDate");
-        const today = new Date();
-        const tomorrow = new Date(today);
-        tomorrow.setDate(today.getDate() + 2);
-        const year = tomorrow.getFullYear();
-        const month = String(tomorrow.getMonth() + 1).padStart(2, '0');
-        const day = String(tomorrow.getDate()).padStart(2, '0');
-        scheduleDateInput.min = `${year}-${month}-${day}`;
+document.addEventListener("DOMContentLoaded", function () {
+    const scheduleDateInput = document.getElementById("scheduleDate");
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 2);
+    const year = tomorrow.getFullYear();
+    const month = String(tomorrow.getMonth() + 1).padStart(2, '0');
+    const day = String(tomorrow.getDate()).padStart(2, '0');
+    scheduleDateInput.min = `${year}-${month}-${day}`;
+
+    const scheduleTimeSelect = document.querySelector("select[name='scheduleTime']");
+
+    // Fetch and update available slots for the selected date
+    scheduleDateInput.addEventListener("change", function () {
+        const scheduleDate = scheduleDateInput.value;
+
+        fetch('{{ route('check_availability') }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({ scheduleDate: scheduleDate })
+        })
+        .then(response => response.json())
+        .then(data => {
+            scheduleTimeSelect.innerHTML = ''; // Clear existing options
+
+            for (const [time, slots] of Object.entries(data)) {
+                const option = document.createElement("option");
+                option.value = time;
+                option.textContent = `${time} (${slots} slots available)`;
+
+                // Disable option if no slots are available
+                if (slots === 0) {
+                    option.disabled = true;
+                }
+
+                scheduleTimeSelect.appendChild(option);
+            }
+        })
+        .catch(error => console.error('Error fetching availability:', error));
     });
+});
 </script>
+
 @endsection

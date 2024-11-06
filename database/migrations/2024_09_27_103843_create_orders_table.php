@@ -21,7 +21,9 @@ return new class extends Migration
             $table->integer('amount');
             $table->string('status');
             $table->date('scheduleDate');
+            $table->string('scheduleTime');
             $table->timestamps();
+            $table->softDeletes(); // Add soft delete column
         });
     }
 
