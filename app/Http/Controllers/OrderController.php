@@ -76,7 +76,7 @@ class OrderController extends Controller
             // Count current orders that are not canceled
             $orderCount = Order::where('scheduleDate', $scheduleDate)
                                 ->where('scheduleTime', $time)
-                                // ->where('status', '!=', 'Cancelled') // Exclude canceled orders
+                                ->where('status', '!=', 'Cancelled') // Exclude canceled orders
                                 ->count();
 
             $availability[$time] = max($maxOrder - $orderCount, 0);
@@ -142,8 +142,9 @@ class OrderController extends Controller
         return view('order.show_all_order', compact('orders'));
     }
 
-    public function show_order_detail(Order $order)
+    public function show_order_detail($id)
     {
+        $order = Order::withTrashed()->findOrFail($id);
         return view('order.order_detail', compact('order'));
     }
 

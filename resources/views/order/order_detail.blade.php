@@ -16,13 +16,16 @@
             <p class="card-text">Customer Name: <strong>{{ $order->user->name }}</strong></p>
             <p class="card-text">Vehicle Name and Model: <strong>{{ $order->vehicleName }}</strong></p>
             <p class="card-text">Schedule Date: <strong>{{ $order->scheduleDate }}</strong></p>
+            <p class="card-text">Schedule Time: <strong>{{ $order->scheduleTime }}</strong></p>
             <p class="card-text">Status:
-                @if ($order->status == 'In Progress')
+                @if ($order->trashed())
+                    <span class="badge bg-danger">Cancelled</span>
+                @elseif ($order->status == 'In Progress')
                     <span class="badge bg-warning text-dark">In Progress</span>
                 @elseif ($order->status == 'Complete')
                     <span class="badge bg-success">Complete</span>
-                @elseif ($order->status == 'Cancelled')
-                    <span class="badge bg-danger">Cancelled</span>
+                @else
+                    <span class="badge bg-secondary">Unknown</span>
                 @endif
             </p>
             <p class="card-text">Car Steering Wheel Photo:</p>
