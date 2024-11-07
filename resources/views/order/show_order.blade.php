@@ -57,12 +57,14 @@
                                 </a>
                             @endif
 
-                            {{-- Cancel Order Button --}}
-                            <form action="{{ route('cancel_order', $order) }}" method="post" onsubmit="return confirm('Are you sure you want to cancel this order?');">
-                                @method('patch')
-                                @csrf
-                                <button type="submit" class="btn btn-red"><i class="bi bi-x-circle"></i> </button>
-                            </form>
+                            {{-- Cancel Order Button - show only if more than 2 full days before schedule date --}}
+                            @if ($canReschedule)
+                                <form action="{{ route('cancel_order', $order) }}" method="post" onsubmit="return confirm('Are you sure you want to cancel this order?');">
+                                    @method('patch')
+                                    @csrf
+                                    <button type="submit" class="btn btn-red"><i class="bi bi-x-circle"></i> </button>
+                                </form>
+                            @endif
                         </div>
                         @else
                             {{-- No actions for Complete or Cancelled orders --}}
