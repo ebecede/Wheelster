@@ -108,11 +108,25 @@ class OrderController extends Controller
     public function reschedule_order(Order $order, Request $request)
     {
         $request->validate([
-            'scheduleDate' => 'required',
+            'scheduleDate' => 'required|date',
+            'scheduleTime' => 'required',
         ]);
 
+        // Check if the selected time slot is available
+        $maxOrder = $request->scheduleTime === '17:00 - 18:00' ? 1 : 2;
+        $orderCount = Order::where('scheduleDate', $request->scheduleDate)
+                        ->where('scheduleTime', $request->scheduleTime)
+                        ->where('status', '!=', 'Cancelled')
+                        ->count();
+
+        if ($orderCount >= $maxOrder) {
+            return back()->withErrors(['scheduleTime' => 'The selected session is fully booked. Please choose another time.']);
+        }
+
+        // Update the order with the new schedule
         $order->update([
             'scheduleDate' => $request->scheduleDate,
+            'scheduleTime' => $request->scheduleTime,
         ]);
 
         return Redirect::route('show_order');

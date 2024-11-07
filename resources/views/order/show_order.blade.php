@@ -44,10 +44,19 @@
                     <td>
                         @if ($order->status == 'In Progress' && !$order->trashed())
                         <div class="d-flex">
-                            {{-- Reschedule Button --}}
-                            <a href="{{ route('reschedule', $order) }}" class="btn btn-darkblue me-2">
-                                <i class="bi bi-pencil-square"></i>
-                            </a>
+                            {{-- Check if the order can be rescheduled --}}
+                            @php
+                                $scheduleDate = \Carbon\Carbon::parse($order->scheduleDate);
+                                $canReschedule = now()->lt($scheduleDate->subDays(1)); // Check if at least 2 full days left
+                            @endphp
+
+                            {{-- Reschedule Button - show only if more than 1 day before schedule date --}}
+                            @if ($canReschedule)
+                                <a href="{{ route('reschedule', $order) }}" class="btn btn-darkblue me-2">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                            @endif
+
                             {{-- Cancel Order Button --}}
                             <form action="{{ route('cancel_order', $order) }}" method="post" onsubmit="return confirm('Are you sure you want to cancel this order?');">
                                 @method('patch')
