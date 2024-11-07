@@ -41,17 +41,24 @@
                     <input type="text" name="vehicleName" class="form-control" value="{{ $order->vehicleName }}" required>
                 </div>
 
-                <div class="form-group">
-                    <label for="scheduleDate">Schedule Date</label>
-                    <input type="date" name="scheduleDate" class="form-control" value="{{ $order->scheduleDate }}" required>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="scheduleDate">Date</label>
+                        <input type="date" name="scheduleDate" class="form-control" value="{{ $order->scheduleDate }}" readonly>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="scheduleTime">Time</label>
+                        <input name="scheduleTime" class="form-control" value="{{ $order->scheduleTime }}" readonly>
+                    </div>
                 </div>
+
 
                 <div class="form-group">
                     <label for="steeringWheelPhoto">Car Steering Wheel Photo</label>
                     @if($order->steeringWheelPhoto)
                         <img src="{{ url('storage/public/' . $order->steeringWheelPhoto) }}" alt="Car Steering Wheel Photo" width="100">
                     @endif
-                    <input type="file" name="steeringWheelPhoto" class="form-control-file" accept="image/*">
+                    {{-- <input type="file" name="steeringWheelPhoto" class="form-control-file" accept="image/*" readonly> --}}
                 </div>
 
                 <button type="submit" class="btn btn-darkblue btn-block mt-4">Update Order</button>

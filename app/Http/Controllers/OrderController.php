@@ -189,15 +189,21 @@ class OrderController extends Controller
             'vehicleName' => 'required|string',
             'scheduleDate' => 'required|date',
             'product_id' => 'required|exists:products,id',
-            'steeringWheelPhoto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Make this nullable and allow image upload
+            'steeringWheelPhoto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Optional image upload
         ]);
 
+        // Check if the product has been changed
+        $oldProduct = $order->product; // Get the old product from the order
+        $newProduct = Product::find($request->product_id); // Get the new product
+
+        // Prepare data for update
         $data = [
             'vehicleName' => $request->vehicleName,
             'scheduleDate' => $request->scheduleDate,
             'product_id' => $request->product_id,
         ];
 
+        // Update the photo if a new one is provided
         if ($request->hasFile('steeringWheelPhoto')) {
             $file = $request->file('steeringWheelPhoto');
             $path = time() . '_steeringWheelPhoto_' . $order->id . "." . $file->getClientOriginalExtension();
@@ -208,6 +214,18 @@ class OrderController extends Controller
             $data['steeringWheelPhoto'] = $order->steeringWheelPhoto;
         }
 
+        // Update stock for old and new product
+        if ($oldProduct->id != $newProduct->id) {
+            // Increase stock of the old product
+            $oldProduct->stock += 1;
+            $oldProduct->save();
+
+            // Decrease stock of the new product
+            $newProduct->stock -= 1;
+            $newProduct->save();
+        }
+
+        // Update the order with the new data
         $order->update($data);
 
         return Redirect::route('show_all_order');
