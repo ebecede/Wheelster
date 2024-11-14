@@ -46,6 +46,25 @@ body {
     border: 1px solid #DDE1F0;
 }
 
+.btn-lightblue {
+    background-color: #99c5f2;
+    color: black;
+    border: 1px solid #dde1f0;
+    border-radius: 12px;
+    /* padding: 5px 10px; */
+    text-align: center;
+    text-decoration: none;
+    /* display: inline-block; */
+    /* transition: background-color 0.3s ease; */
+}
+
+.btn-lightblue:hover {
+    background-color: #091954;
+    transition: background-color 0.3s ease;
+    color: white;
+    border: 1px solid #dde1f0;
+}
+
 .btn-darkblue {
     background-color: #091954;
     color: white;
@@ -100,18 +119,21 @@ body {
     border: 1px solid #DDE1F0;
 }
 
+/* public/css/style.css */
+
 #home {
-    background: url('images/Landing.png') no-repeat center center;
-    background-size: cover;
     position: relative;
-    color: white;
+    background-image: url('/images/landing.jpg'); /* Background image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     height: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 80px;
+    padding: 100px 0;
+    color: white;
+    overflow: hidden; /* Ensures the overlay covers the entire area */
 }
 
+/* Full overlay */
 #home::before {
     content: '';
     position: absolute;
@@ -119,14 +141,22 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Adjust the overlay color and opacity as needed */
-    z-index: 1;
+    background: rgba(0, 0, 0, 0.7); /* Dark overlay color with 50% opacity */
+    z-index: 1; /* Positions overlay below text */
 }
 
+/* Ensure container content is above the overlay */
 #home .container {
     position: relative;
-    z-index: 2;
+    z-index: 2; /* Brings text and other content above the overlay */
+    padding: 100px;
 }
+
+
+h1, p {
+    margin: 0;
+}
+
 
 #about{
     padding-top: 80px;
