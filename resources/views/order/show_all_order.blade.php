@@ -18,8 +18,8 @@
                 <tr class="table-light">
                     <th scope="col">Customer Name</th>
                     <th scope="col">Product Name</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Time</th>
+                    <th scope="col">Vehicle Name</th>
+                    <th scope="col">Date & Time</th>
                     <th scope="col">Status</th>
                     <th scope="col">Actions</th>
                 </tr>
@@ -33,9 +33,10 @@
                     </td>
                     {{-- Display Product Name --}}
                     <td>{{ $order->product->name }}</td>
+                    {{-- Display Vehicle Name --}}
+                    <td>{{ $order->vehicleName }}</td>
                     {{-- Display Schedule Date --}}
-                    <td>{{ \Carbon\Carbon::parse($order->scheduleDate)->format('l, d M Y') }}</td>
-                    <td>{{ $order->scheduleTime }}</td>
+                    <td>{{ \Carbon\Carbon::parse($order->scheduleDate)->format('l, d M Y') }} <br> {{ $order->scheduleTime }}</td>
                     {{-- Display Order Status with Badge Styling --}}
                     <td>
                         @if ($order->status == 'In Progress' && !$order->trashed())
@@ -51,26 +52,26 @@
                         @if ($order->status == 'In Progress' && !$order->trashed())
                         <div class="d-flex">
                             <form action="{{ route('edit_order', $order) }}" method="get" >
-                                <button type="submit" class="btn btn-darkblue me-1"><i class="bi bi-pencil-square"></i></button>
+                                <button type="submit" class="btn btn-darkblue me-1"><i class="fa-regular fa-pen-to-square"></i></button>
                             </form>
                             <form action="{{ route('show_order_detail', $order) }}" method="get" >
-                                <button type="submit" class="btn btn-darkblue me-1"><i class="bi bi-card-text"></i></button>
+                                <button type="submit" class="btn btn-lightblue me-1"><i class="bi bi-card-text"></i></button>
                             </form>
                             <form action="{{ route('complete_order_admin', $order) }}" method="post" onsubmit="return confirm('Are you sure you want to mark this order as Complete?');">
                                 @method('patch')
                                 @csrf
-                                <button type="submit" class="btn btn-green me-1"><i class="bi bi-check-circle"></i></button>
+                                <button type="submit" class="btn btn-green me-1"><i class="fa-regular fa-circle-check"></i></button>
                             </form>
                             <form action="{{ route('cancel_order_admin', $order) }}" method="post" onsubmit="return confirm('Are you sure you want to cancel this order?');">
                                 @method('patch')
                                 @csrf
-                                <button type="submit" class="btn btn-red me-1"><i class="bi bi-x-circle"></i></button>
+                                <button type="submit" class="btn btn-red me-1"><i class="fa-solid fa-ban"></i></button>
                             </form>
                         </div>
                         @else
                             {{-- No actions for Complete or Cancelled orders --}}
                             <form action="{{ route('show_order_detail', $order) }}" method="get" >
-                                <button type="submit" class="btn btn-darkblue me-1"><i class="bi bi-card-text"></i></button>
+                                <button type="submit" class="btn btn-lightblue me-1"><i class="bi bi-card-text"></i></button>
                             </form>
                         @endif
                     </td>

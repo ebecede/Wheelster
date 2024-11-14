@@ -50,10 +50,14 @@
                                 $canReschedule = now()->lt($scheduleDate->subDays(1)); // Check if at least 2 full days left
                             @endphp
 
+                            <form action="{{ route('show_order_detail', $order) }}" method="get" >
+                                <button type="submit" class="btn btn-lightblue me-2"><i class="bi bi-card-text"></i></button>
+                            </form>
+
                             {{-- Reschedule Button - show only if more than 1 day before schedule date --}}
                             @if ($canReschedule)
                                 <a href="{{ route('reschedule', $order) }}" class="btn btn-darkblue me-2">
-                                    <i class="bi bi-pencil-square"></i>
+                                    <i class="fa-regular fa-pen-to-square"></i>
                                 </a>
                             @endif
 
@@ -62,13 +66,17 @@
                                 <form action="{{ route('cancel_order', $order) }}" method="post" onsubmit="return confirm('Are you sure you want to cancel this order?');">
                                     @method('patch')
                                     @csrf
-                                    <button type="submit" class="btn btn-red"><i class="bi bi-x-circle"></i> </button>
+                                    <button type="submit" class="btn btn-red"><i class="fa-solid fa-ban"></i> </button>
                                 </form>
                             @endif
+
                         </div>
                         @else
+                        <form action="{{ route('show_order_detail', $order) }}" method="get" >
+                            <button type="submit" class="btn btn-lightblue me-1"><i class="bi bi-card-text"></i></button>
+                        </form>
                             {{-- No actions for Complete or Cancelled orders --}}
-                            <span class="text-muted">N/A</span>
+                            {{-- <span class="text-muted">N/A</span> --}}
                         @endif
                     </td>
                 </tr>

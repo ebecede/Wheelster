@@ -17,7 +17,12 @@ Auth::routes();
 // GUEST
 Route::get('/', [UserController::class, 'viewHomePage'])->name('home');
 Route::get('/product', [ProductController::class, 'index_product'])->name('index_product');
-Route::post('/check-availability', [OrderController::class, 'checkAvailability'])->name('check_availability');
+
+// CUSTOMER and ADMIN
+Route::middleware(['auth'])->group(function () {
+    Route::get('/order/{order}', [OrderController::class, 'show_order_detail'])->name('show_order_detail');
+    Route::post('/check-availability', [OrderController::class, 'checkAvailability'])->name('check_availability');
+});
 
 // CUSTOMER
 Route::middleware(['auth', 'customer'])->group(function () {
@@ -41,7 +46,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     // CRUD ORDER for ADMIN
     Route::get('/order', [OrderController::class, 'show_all_order'])->name('show_all_order');
-    Route::get('/order/{order}', [OrderController::class, 'show_order_detail'])->name('show_order_detail');
+    // Route::get('/order/{order}', [OrderController::class, 'show_order_detail'])->name('show_order_detail');
     Route::get('/order/{order}/edit',[OrderController::class, 'edit_order'])->name('edit_order');
     Route::patch('/order/{order}/update',[OrderController::class, 'update_order'])->name('update_order');
     Route::patch('/order/{order}/cancel', [OrderController::class, 'cancel_order_admin'])->name('cancel_order_admin');
