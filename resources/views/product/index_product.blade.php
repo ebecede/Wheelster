@@ -1,7 +1,7 @@
 @extends('layouts.product_layout')
 
 @section('content')
-<section id="home" class="bg-dark text-white py-5 bg-image">
+<section id="product" class="bg-dark text-white bg-image">
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">

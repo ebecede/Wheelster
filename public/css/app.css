@@ -157,6 +157,42 @@ h1, p {
     margin: 0;
 }
 
+#product {
+    position: relative;
+    background-image: url('/images/landing1.jpg'); /* Background image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 500px;
+    padding: 70px 0;
+    color: white;
+    overflow: hidden; /* Ensures the overlay covers the entire area */
+}
+
+/* Full overlay */
+#product::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7); /* Dark overlay color with 50% opacity */
+    z-index: 1; /* Positions overlay below text */
+}
+
+/* Ensure container content is above the overlay */
+#product .container {
+    position: relative;
+    z-index: 2; /* Brings text and other content above the overlay */
+    padding: 100px;
+}
+
+
+h1, p {
+    margin: 0;
+}
+
 
 #about{
     padding-top: 80px;
