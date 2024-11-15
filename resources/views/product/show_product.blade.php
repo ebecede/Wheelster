@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-group">
                     <label for="steeringWheelPhoto">Car Steering Wheel Photo</label>
-                    <input type="file" name="steeringWheelPhoto" class="form-control-file" required>
+                    <input type="file" name="steeringWheelPhoto" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="schedule">Select a Schedule Date</label>
@@ -33,7 +33,7 @@
                 <div class="form-group">
                     <label for="scheduleTime">Select a Schedule Time</label>
                     <select name="scheduleTime" class="form-control" required>
-                        
+
                     </select>
                 </div>
                 <button type="submit" class="btn-darkblue btn-block mt-4" style="padding: 5px 5px">Submit</button>

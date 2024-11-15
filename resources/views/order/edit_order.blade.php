@@ -1,29 +1,38 @@
 @extends('layouts.product_layout')
 
 @section('content')
-<div class="container col-md-7 backblue my-5">
+<div class="container col-lg-8 col-md-10 col-sm-12 backblue my-5">
     <div class="d-flex align-items-center justify-content-between mb-3">
         <a href="{{ url()->previous() }}" style="color: black"><i class="bi bi-arrow-left"></i></a>
         <h1 class="text-center flex-grow-1">Edit Order</h1>
     </div>
-    <hr style="border-color: black;"> <br>
+    <hr style="border-color: black;">
     <div class="row">
-        <div class="col-md-6 text-center">
-            <img id="productImage" src="{{ url('storage/public/' . $product->image) }}" alt="Product Image" max-height="100%" object-fit="contain" height = "400px">
-            <h4 class="card-text mt-3"><strong id="productDetails">{{ $product->name }} - Rp {{ number_format($product->price, 2) }}</strong></h4>
+        <!-- Left Section: Product Image -->
+        <div class="col-md-6 text-center mb-4">
+            <img id="productImage" src="{{ url('storage/public/' . $product->image) }}" alt="Product Image"
+                 class="img-fluid rounded" style="max-height: 400px; object-fit: contain;">
+            <h4 class="card-text mt-3">
+                <strong id="productDetails">{{ $product->name }} - Rp {{ number_format($product->price, 2) }}</strong>
+            </h4>
         </div>
+
+        <!-- Right Section: Order Form -->
         <div class="col-md-6">
             <form action="{{ route('update_order', $order) }}" method="post" enctype="multipart/form-data">
                 @method('patch')
                 @csrf
-                <div class="form-group">
+
+                <!-- Customer Name -->
+                <div class="form-group mb-3">
                     <label for="customerName">Customer Name</label>
                     <input type="text" name="customerName" class="form-control" value="{{ $order->user->name }}" readonly>
                 </div>
 
-                <div class="form-group">
+                <!-- Product Selection -->
+                <div class="form-group mb-3">
                     <label for="product">Product</label>
-                    <select name="product_id" id="product" class="form-control select2">
+                    <select name="product_id" id="product" class="form-select select2">
                         @foreach ($products as $prod)
                             <option value="{{ $prod->id }}"
                                     data-image="{{ url('storage/public/' . $prod->image) }}"
@@ -36,32 +45,37 @@
                     </select>
                 </div>
 
-                <div class="form-group">
+                <!-- Vehicle Information -->
+                <div class="form-group mb-3">
                     <label for="vehicleName">Vehicle Name and Model</label>
                     <input type="text" name="vehicleName" class="form-control" value="{{ $order->vehicleName }}" required>
                 </div>
 
-                <div class="form-group row">
+                <!-- Schedule Date and Time -->
+                <div class="form-group row mb-3">
                     <div class="col-md-6">
                         <label for="scheduleDate">Date</label>
                         <input type="date" name="scheduleDate" class="form-control" value="{{ $order->scheduleDate }}" readonly>
                     </div>
                     <div class="col-md-6">
                         <label for="scheduleTime">Time</label>
-                        <input name="scheduleTime" class="form-control" value="{{ $order->scheduleTime }}" readonly>
+                        <input type="text" name="scheduleTime" class="form-control" value="{{ $order->scheduleTime }}" readonly>
                     </div>
                 </div>
 
-
-                <div class="form-group">
+                <!-- Steering Wheel Photo -->
+                <div class="form-group mb-3">
                     <label for="steeringWheelPhoto">Car Steering Wheel Photo</label>
                     @if($order->steeringWheelPhoto)
-                        <img src="{{ url('storage/public/' . $order->steeringWheelPhoto) }}" alt="Car Steering Wheel Photo" width="100">
+                        <div class="mb-3">
+                            <img src="{{ url('storage/public/' . $order->steeringWheelPhoto) }}" alt="Car Steering Wheel Photo"
+                                 class="img-fluid rounded" style="max-width: 100px;">
+                        </div>
                     @endif
-                    {{-- <input type="file" name="steeringWheelPhoto" class="form-control-file" accept="image/*" readonly> --}}
                 </div>
 
-                <button type="submit" class="btn btn-darkblue btn-block mt-4">Update Order</button>
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-darkblue w-100">Update Order</button>
             </form>
         </div>
     </div>
@@ -75,8 +89,12 @@
 
     <script>
         $(document).ready(function() {
-            $('.select2').select2();
+            // Initialize Select2
+            $('.select2').select2({
+                width: '100%' // Ensures the Select2 dropdown matches the parent container width
+            });
 
+            // Update product details on selection change
             $(document).on('change', '#product', function() {
                 var selectedOption = $(this).find('option:selected');
                 var imageUrl = selectedOption.data('image');
@@ -89,4 +107,3 @@
         });
     </script>
 @endsection
-

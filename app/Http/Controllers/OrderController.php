@@ -234,7 +234,7 @@ class OrderController extends Controller
     // Display the order list with filtering by month
     public function index(Request $request)
     {
-        $query = Order::with('user', 'product');
+        $query = Order::with('user', 'product')->withTrashed();
 
         // Filter by month and year if selected
         if ($request->has('month')) {

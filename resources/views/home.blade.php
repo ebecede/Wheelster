@@ -69,7 +69,7 @@
         </div>
     </section>
 
-    <section id="services" class="bg-light">
+    <section id="services" class="bg-blue">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">

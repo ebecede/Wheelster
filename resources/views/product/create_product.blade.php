@@ -39,7 +39,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Product Image</label>
-                    <input type="file" name="image" class="form-control-file" required>
+                    <input type="file" name="image" class="form-control" required>
                 </div>
                 <button type="submit" class="btn btn-darkblue btn-block mt-4">Submit</button>
             </form>
