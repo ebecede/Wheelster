@@ -1,20 +1,20 @@
 @extends('layouts.product_layout')
 
 @section('content')
-<div class="container col-md-7 backblue my-5">
+<div class="container backblue my-5">
     <div class="d-flex align-items-center justify-content-between mb-3">
         <a href="{{ url()->previous() }}" style="color: black"><i class="bi bi-arrow-left"></i></a>
         <h1 class="text-center flex-grow-1">Order Form</h1>
     </div>
     <hr style="border-color: black;"> <br>
     <div class="row">
-        <div class="col-md-6">
-            <img src="{{ url('storage/public/' . $product->image) }}" alt="" height="500px" width="500px">
+        <div class="col-lg-6 col-md-12 mb-4">
+            <img src="{{ url('storage/public/' . $product->image) }}" alt="" class="img-fluid">
         </div>
-        <div class="col-md-6">
-            <h4 class=""><strong>{{ $product->name }}</strong></h4>
-            <h3 class=""><strong>Rp{{ number_format($product->price, 2) }}</strong></h3>
-            <p class="">Product Description: <br> {{ $product->description }}</p>
+        <div class="col-lg-6 col-md-12">
+            <h4><strong>{{ $product->name }}</strong></h4>
+            <h3><strong>Rp{{ number_format($product->price, 2) }}</strong></h3>
+            <p>Product Description: <br> {{ $product->description }}</p>
             <br>
             <form action="{{ route('make_order', $product) }} " method="POST" enctype="multipart/form-data">
                 @csrf
@@ -33,7 +33,6 @@
                 <div class="form-group">
                     <label for="scheduleTime">Select a Schedule Time</label>
                     <select name="scheduleTime" class="form-control" required>
-
                     </select>
                 </div>
                 <button type="submit" class="btn-darkblue btn-block mt-4" style="padding: 5px 5px">Submit</button>

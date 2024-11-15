@@ -39,7 +39,7 @@
                             <strong>{{ $product->name }} ({{ $product->brand->brandName }})</strong>
                         </p>
                         <h4 class="card-text" style="color: #091954">
-                            <strong>Rp {{ number_format($product->price, 2) }}</strong>
+                            <strong>Rp{{ number_format($product->price, 2) }}</strong>
                         </h4>
                         <p class="card-text">Stok: {{ $product->stock }}</p>
                         <div class="text-center">

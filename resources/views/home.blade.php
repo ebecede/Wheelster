@@ -128,17 +128,17 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <img src="{{ asset('images/Profile.png') }}" alt="David Bonardo Purba" class="rounded-circle img-fluid mb-3">
+                                    <img src="{{ asset('images/david.jpg') }}" alt="David Bonardo Purba" class="rounded-circle img-fluid mb-3">
                                     <h5 class="card-title">David Bonardo Purba</h5>
                                     <p class="card-text">2502001385<br>Computer Science</p>
                                 </div>
                                 <div class="col-md-4">
-                                    <img src="{{ asset('images/Profile.png') }}" alt="Edward Wijaya" class="rounded-circle img-fluid mb-3">
+                                    <img src="{{ asset('images/edward.jpeg') }}" alt="Edward Wijaya" class="rounded-circle img-fluid mb-3">
                                     <h5 class="card-title">Edward Wijaya</h5>
                                     <p class="card-text">2540125434<br>Computer Science</p>
                                 </div>
                                 <div class="col-md-4">
-                                    <img src="{{ asset('images/Profile.png') }}" alt="Matthew" class="rounded-circle img-fluid mb-3">
+                                    <img src="{{ asset('images/matthew.jpg') }}" alt="Matthew" class="rounded-circle img-fluid mb-3">
                                     <h5 class="card-title">Matthew</h5>
                                     <p class="card-text">2502010250<br>Computer Science</p>
                                 </div>
@@ -160,7 +160,7 @@
             </div>
             <div class="row mt-5">
                 <div class="col-md-6 mb-4">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.700450779522!2d106.79833221474267!3d-6.166428864860968!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69e832365946ff%3A0x8a839311c267365!2sRuko%20La%20Riviera%20Blok%20B%20No.11%2C%20Lemo%2C%20Kec.%20Teluknaga%2C%20Kabupaten%20Tangerang%2C%20Banten%2015510!5e0!3m2!1sen!2sid!4v1701814962605!5m2!1sen!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.6466184585734!2d106.68981111164389!3d-6.043129593917294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a0515c969874d%3A0x14e02e3081ed7662!2sWheelster!5e0!3m2!1sen!2sid!4v1731686725026!5m2!1sen!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div class="col-md-6">
                     <h4 class="mb-4">Contact Information</h4>
