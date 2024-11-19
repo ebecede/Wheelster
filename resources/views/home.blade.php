@@ -17,10 +17,14 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <h2 class="fw-bold mb-4">Why Wheelster?</h2>
+
                     <p>Wheelster is a web-based application specifically designed for car enthusiasts and car modification business owners. Our goal is to connect car enthusiasts with car modification business owners. Here are a few reasons why you should choose Wheelster:</p>
                 </div>
             </div>
             <div class="row mt-5">
+                <div class="col-md-12 text-center">
+                    <h2 class="fw-bold my-4">Benefits of Choosing Wheelster</h2>
+                </div>
                 <div class="col-md-6 mb-4">
                     <div class="card custom-card h-100">
                         <div class="card-body d-flex align-items-center">
@@ -35,10 +39,10 @@
                 <div class="col-md-6 mb-4">
                     <div class="card custom-card h-100">
                         <div class="card-body d-flex align-items-center">
-                            <i class="bi bi-bar-chart-line-fill fs-3 me-4"></i>
+                            <i class="bi bi-people-fill fs-3 me-4"></i>
                             <div>
-                                <h5 class="card-title">Quality of Work</h5>
-                                <p class="card-text">Use high-quality components and ensure that all work is done to industry standards. This reduces the risk of problems later on.</p>
+                                <h5 class="card-title">Extensive Network</h5>
+                                <p class="card-text">Connect with a vast community of car enthusiasts and modification businesses.</p>
                             </div>
                         </div>
                     </div>
@@ -46,10 +50,10 @@
                 <div class="col-md-6 mb-4">
                     <div class="card custom-card h-100">
                         <div class="card-body d-flex align-items-center">
-                            <i class="bi bi-people-fill fs-3 me-4"></i>
+                            <i class="bi bi-bar-chart-line-fill fs-3 me-4"></i>
                             <div>
-                                <h5 class="card-title">Extensive Network</h5>
-                                <p class="card-text">Connect with a vast community of car enthusiasts and modification businesses.</p>
+                                <h5 class="card-title">Quality of Work</h5>
+                                <p class="card-text">Use high-quality components and ensure that all work is done to industry standards. This reduces the risk of problems.</p>
                             </div>
                         </div>
                     </div>
@@ -73,7 +77,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h2 class="fw-bold mb-4">Services</h2>
+                    <h2 class="fw-bold">Services</h2>
+                    <hr class="col-md-1 mx-auto" style="border-color: black; border-width: 2px;">
                     <p>Some of the services we provide</p>
                 </div>
             </div>
@@ -118,7 +123,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h2 class="fw-bold mb-4">Team</h2>
+                    <h2 class="fw-bold">Team</h2>
+                    <hr class="col-md-1 mx-auto" style="border-color: black; border-width: 2px;">
                     <p>Our team consists of three students from Bina Nusantara University</p>
                 </div>
             </div>
@@ -156,9 +162,10 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <h2 class="fw-bold">Contact Us</h2>
+                    <hr class="col-md-1 mx-auto" style="border-color: black; border-width: 2px;">
                 </div>
             </div>
-            <div class="row mt-5">
+            <div class="row mt-4">
                 <div class="col-md-6 mb-4">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.6466184585734!2d106.68981111164389!3d-6.043129593917294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a0515c969874d%3A0x14e02e3081ed7662!2sWheelster!5e0!3m2!1sen!2sid!4v1731686725026!5m2!1sen!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>

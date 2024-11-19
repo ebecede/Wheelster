@@ -27,6 +27,12 @@ body {
     outline: none; /* Remove default outline */
     box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.75); /* Add white outline on hover/focus */
 }
+.navbar-nav .nav-link.active {
+    color: #C6DDF6; /* Highlight color */
+    font-weight: bold; /* Optional: Make the text bold */
+    border-bottom: 2px solid #C6DDF6; /* Optional: Add a border to highlight */
+}
+
 
 .btn-white {
     background-color: #374B8C;

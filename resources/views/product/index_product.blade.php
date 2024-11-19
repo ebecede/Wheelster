@@ -31,7 +31,7 @@
     <div class="row">
         @foreach ($products as $product)
             <div class="col-md-3 mb-4">
-                <div class="card custom-card h-100 shadow-sm text-decoration-none">
+                <div class="card custom-card h-100 shadow text-decoration-none">
                     <img src="{{ url('storage/public/' . $product->image) }}" alt="" height="100px"
                         style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
                     <div class="card-body">

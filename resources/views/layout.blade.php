@@ -26,27 +26,31 @@
                 <div class="navbar-nav mx-auto text-center" >
                     <div class="navbar-nav mx-auto text-center">
                         <!-- Links visible to all users -->
-                        <a class="nav-link me-3" href="{{ route('home') }}">Home</a>
-                        <a class="nav-link me-3" href="#about">About Us</a>
-                        <a class="nav-link me-3" href="#services">Services</a>
-                        <a class="nav-link me-3" href="#team">Team</a>
-                        <a class="nav-link me-3" href="#contact">Contact Us</a>
+                        <div class="navbar-nav mx-auto text-center">
+                            <!-- Links visible to all users -->
+                            <a class="nav-link me-3 {{ Route::is('home') ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
+                            <a class="nav-link me-3 {{ Request::is('about') ? 'active' : '' }}" href="#about">About Us</a>
+                            <a class="nav-link me-3 {{ Request::is('services') ? 'active' : '' }}" href="#services">Services</a>
+                            <a class="nav-link me-3 {{ Request::is('team') ? 'active' : '' }}" href="#team">Team</a>
+                            <a class="nav-link me-3 {{ Request::is('contact') ? 'active' : '' }}" href="#contact">Contact Us</a>
 
-                        @auth
-                            @if(Auth::user()->is_admin)
-                                <!-- Admin-specific links -->
-                                <a class="nav-link me-3" href="{{ route('index_product_admin') }}">Product</a>
-                                <a class="nav-link me-3" href="{{ route('show_all_order') }}">Order</a>
-                                <a class="nav-link me-3" href="{{ route('view_report') }}">Report</a>
+                            @auth
+                                @if(Auth::user()->is_admin)
+                                    <!-- Admin-specific links -->
+                                    <a class="nav-link me-3 {{ Route::is('index_product_admin') ? 'active' : '' }}" href="{{ route('index_product_admin') }}">Product</a>
+                                    <a class="nav-link me-3 {{ Route::is('show_all_order') ? 'active' : '' }}" href="{{ route('show_all_order') }}">Order</a>
+                                    <a class="nav-link me-3 {{ Route::is('view_report') ? 'active' : '' }}" href="{{ route('view_report') }}">Report</a>
+                                @else
+                                    <!-- User-specific links -->
+                                    <a class="nav-link me-3 {{ Route::is('index_product') ? 'active' : '' }}" href="{{ route('index_product') }}">Product</a>
+                                    <a class="nav-link me-3 {{ Route::is('show_order') ? 'active' : '' }}" href="{{ route('show_order') }}">Transaction</a>
+                                @endif
                             @else
-                                <!-- User-specific links -->
-                                <a class="nav-link me-3" href="{{ route('index_product') }}">Product</a>
-                                <a class="nav-link me-3" href="{{ route('show_order') }}">Transaction</a>
-                            @endif
-                        @else
-                            <!-- Guest-specific links -->
-                            <a class="nav-link me-3" href="{{ route('index_product') }}">Product</a>
-                        @endauth
+                                <!-- Guest-specific links -->
+                                <a class="nav-link me-3 {{ Route::is('index_product') ? 'active' : '' }}" href="{{ route('index_product') }}">Product</a>
+                            @endauth
+                        </div>
+
                     </div>
                 </div>
                 <div class="d-flex justify-content-center mt-2 mt-lg-0 me-3">
