@@ -16,7 +16,6 @@ class Order extends Model
         'montir_id',
         'vehicleName',
         'steeringWheelPhoto',
-        'amount',
         'status',
         'scheduleDate',
         'scheduleTime',  // Tambahkan scheduleTime
@@ -31,6 +30,10 @@ class Order extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function invoice(){
+        return $this->hasOne(Invoice::class);
     }
 
 }

@@ -25,7 +25,6 @@ class OrderController extends Controller
 
         $user_id = Auth::id();
         $product_id = $product->id;
-        $amount = $product->price;
         $status = 'In Progress';
 
         // Cek apakah jumlah order sudah mencapai batas maksimal di sesi yang dipilih
@@ -49,7 +48,6 @@ class OrderController extends Controller
             'steeringWheelPhoto' => $path,
             'scheduleDate' => $request->scheduleDate,
             'scheduleTime' => $request->scheduleTime,  // Tambahkan scheduleTime
-            'amount' => $amount,
             'status' => $status,
         ]);
 
@@ -173,6 +171,7 @@ class OrderController extends Controller
     public function complete_order_admin(Order $order)
     {
         $order->update(['status' => 'Complete']);
+        app(InvoiceController::class)->create_invoice($order);
         return Redirect::route('show_all_order');
     }
 

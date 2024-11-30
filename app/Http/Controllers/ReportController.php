@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Order;
-use App\Models\Product;
-use App\Models\Brand;
-use Illuminate\Support\Facades\Auth;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\OrderExport;
+use App\Models\Invoice;
+use App\Models\Brand;;
 
 use function Laravel\Prompts\alert;
 
@@ -31,20 +27,21 @@ class ReportController extends Controller
 
     public function getMonthlyData($year)
     {
-        // Query orders, filter by year, join with products and brands, group by month and brand
+        // Query invoice, filter by year, join with order, product and brands, group by month and brand
         try {
-            $data = Order::select(
-                DB::raw('DATE_FORMAT(orders.created_at, "%Y-%m") as month'),
+            $data = Invoice::select(
+                DB::raw('DATE_FORMAT(invoice.paymentDate, "%Y-%m") as month'),
                 'products.brand_id',
-                DB::raw('COUNT(*) as order_count'),
-                DB::raw('SUM(orders.amount) as total_profit')
+                DB::raw('COUNT(orders.id) as order_count'),
+                DB::raw('SUM(invoice.amount) as total_profit')
             )
-                ->join('products', 'orders.product_id', '=', 'products.id')
-                ->join('brands', 'products.brand_id', '=', 'brands.id')
-                ->whereYear('orders.created_at', $year)
-                ->groupBy('month', 'products.brand_id')
-                ->orderBy('month', 'asc')
-                ->get();
+            ->join('orders', 'invoice.order_id', '=', 'orders.id')
+            ->join('products', 'orders.product_id', '=', 'products.id')
+            ->join('brands', 'products.brand_id', '=', 'brands.id')
+            ->whereYear('invoice.paymentDate', $year)
+            ->groupBy('month', 'products.brand_id')
+            ->orderBy('month', 'asc')
+            ->get();
 
         } catch (\Exception $e) {
             return response()->json([
