@@ -30,15 +30,15 @@ class ReportController extends Controller
         // Query invoice, filter by year, join with order, product and brands, group by month and brand
         try {
             $data = Invoice::select(
-                DB::raw('DATE_FORMAT(invoice.paymentDate, "%Y-%m") as month'),
+                DB::raw('DATE_FORMAT(invoices.paymentDate, "%Y-%m") as month'),
                 'products.brand_id',
                 DB::raw('COUNT(orders.id) as order_count'),
-                DB::raw('SUM(invoice.amount) as total_profit')
+                DB::raw('SUM(invoices.amount) as total_profit')
             )
-            ->join('orders', 'invoice.order_id', '=', 'orders.id')
+            ->join('orders', 'invoices.order_id', '=', 'orders.id')
             ->join('products', 'orders.product_id', '=', 'products.id')
             ->join('brands', 'products.brand_id', '=', 'brands.id')
-            ->whereYear('invoice.paymentDate', $year)
+            ->whereYear('invoices.paymentDate', $year)
             ->groupBy('month', 'products.brand_id')
             ->orderBy('month', 'asc')
             ->get();
