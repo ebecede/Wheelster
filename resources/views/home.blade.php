@@ -2,11 +2,11 @@
 
 @section('content')
     <section id="home" class="bg-dark text-white py-5 bg-image">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h1 class="fw-bold display-4">Welcome to <img src="{{ asset('images/logo-2.png') }}" alt="Wheelster Logo" height="100"></h1>
-                    <p class="lead">Providing the best car steering modification services in the PIK area.</p>
+                    <h1 class="fw-bold display-4">Welcome to <img src="{{ asset('images/logo-2.png') }}" alt="Wheelster Logo" height="70px"></h1>
+                    <p class="lead mt-3">Providing the best car steering modification services in the PIK area.</p>
                 </div>
             </div>
         </div>
@@ -17,7 +17,6 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <h2 class="fw-bold mb-4">Why Wheelster?</h2>
-
                     <p>Wheelster is a web-based application specifically designed for car enthusiasts and car modification business owners. Our goal is to connect car enthusiasts with car modification business owners. Here are a few reasons why you should choose Wheelster:</p>
                 </div>
             </div>
@@ -78,7 +77,7 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <h2 class="fw-bold">Services</h2>
-                    <hr class="col-md-1 mx-auto" style="border-color: black; border-width: 2px;">
+                    <hr class="styled-hr" width="100px">
                     <p>Some of the services we provide</p>
                 </div>
             </div>
@@ -124,7 +123,7 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <h2 class="fw-bold">Team</h2>
-                    <hr class="col-md-1 mx-auto" style="border-color: black; border-width: 2px;">
+                    <hr class="styled-hr" width="50px">
                     <p>Our team consists of three students from Bina Nusantara University</p>
                 </div>
             </div>
@@ -162,7 +161,7 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <h2 class="fw-bold">Contact Us</h2>
-                    <hr class="col-md-1 mx-auto" style="border-color: black; border-width: 2px;">
+                    <hr class="styled-hr" width="100px">
                 </div>
             </div>
             <div class="row mt-4">

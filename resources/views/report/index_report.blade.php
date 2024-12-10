@@ -115,7 +115,7 @@
 
 @section('content')
     <div class="container my-5">
-        <h1>Report</h1>
+        <h1>Report</h1><br>
         <div class="control-group">
             <select id="yearDropdown" class="btn-style dropdown-toggle pe-3">
                 @foreach ($years as $year)

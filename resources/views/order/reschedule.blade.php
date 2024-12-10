@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container col-md-4 backblue my-5">
+<div class="container col-md-4 col-sm-8 col-10 backblue my-5">
     <div class="d-flex align-items-center justify-content-between mb-3">
         <a href="{{ url()->previous() }}" style="color: black"><i class="bi bi-arrow-left"></i></a>
         <h1 class="text-center flex-grow-1">Reschedule Form</h1>

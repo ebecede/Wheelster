@@ -17,7 +17,7 @@
         <div class="container-fluid text-white">
             <div class="footer-logo">
                 <a href="{{ route('home') }}">
-                    <img src="{{ asset('images/logo.png') }}" alt="Wheelster Logo" style="width: 50px; margin-left: 100px;">
+                    <img src="{{ asset('images/logo.png') }}" alt="Wheelster Logo" style="width: 50px;">
                 </a>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,7 +48,7 @@
                 <div class="d-flex justify-content-center mt-2 mt-lg-0 me-3">
                     @guest
                         @if (Route::has('login'))
-                            <a class="btn btn-white me-2" href="{{ route('login') }}">{{ __('Sign In') }}</a>
+                            <a class="btn btn-white" href="{{ route('login') }}">{{ __('Sign In') }}</a>
                         @endif
 
                         {{-- @if (Route::has('register'))

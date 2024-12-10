@@ -1,7 +1,7 @@
 @extends('layouts.product_layout')
 
 @section('content')
-<div class="container col-md-8 col-lg-7 backblue my-5">
+<div class="container col-md-8 col-sm-8 col-10 backblue my-5">
     <div class="d-flex align-items-center justify-content-between mb-3">
         <a href="{{ url()->previous() }}" class="text-decoration-none" style="color: black"><i class="bi bi-arrow-left"></i></a>
         <h1 class="text-center flex-grow-1">Edit Product</h1>

@@ -12,6 +12,7 @@
             <a href="{{ route('order_list') }}" class="btn btn-secondary ms-2" style="border-radius: 12px">Clear</a>
         </form>
     </div>
+    <br>
     <div class="table-responsive">
         <table class="table">
             <thead>

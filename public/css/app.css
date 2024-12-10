@@ -6,6 +6,7 @@ body {
 .navbar{
     background-color: #091954;
 }
+
 .navbar-nav .nav-link{
     color: white;
 }
@@ -42,8 +43,6 @@ body {
     padding: 5px 10px;
     text-align: center;
     text-decoration: none;
-    /* display: inline-block; */
-    /* transition: background-color 0.3s ease; */
 }
 
 .btn-white:hover {
@@ -57,11 +56,8 @@ body {
     color: black;
     border: 1px solid #dde1f0;
     border-radius: 12px;
-    /* padding: 5px 10px; */
     text-align: center;
     text-decoration: none;
-    /* display: inline-block; */
-    /* transition: background-color 0.3s ease; */
 }
 
 .btn-lightblue:hover {
@@ -76,11 +72,8 @@ body {
     color: white;
     border: 1px solid #DDE1F0;
     border-radius: 12px;
-    /* padding: 5px 10px; */
     text-align: center;
     text-decoration: none;
-    /* display: inline-block; */
-    /* transition: background-color 0.3s ease; */
 }
 
 .btn-darkblue:hover {
@@ -94,11 +87,8 @@ body {
     color: white;
     border: 1px solid #DDE1F0;
     border-radius: 12px;
-    /* padding: 10px 10px; */
     text-align: center;
     text-decoration: none;
-    /* display: inline-block; */
-    /* transition: background-color 0.3s ease; */
 }
 
 .btn-red:hover {
@@ -112,11 +102,8 @@ body {
     color: white;
     border: 1px solid #DDE1F0;
     border-radius: 12px;
-    /* padding: 10px 10px; */
     text-align: center;
     text-decoration: none;
-    /* display: inline-block; */
-    /* transition: background-color 0.3s ease; */
 }
 
 .btn-green:hover {
@@ -129,18 +116,29 @@ body {
     background-color: #99C5F280; /* 0.5 sets the opacity to 50% */
 }
 
+.styled-hr {
+    border-width: 2px;
+    height: 2px;
+    border-color: black;
+    margin: 0 auto 10px auto;
+  }
+
 /* public/css/style.css */
 
 #home {
     position: relative;
-    background-image: url('/images/landing.jpg'); /* Background image path */
+    background: url('/images/landing.jpg'); /* Background image path */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     height: 510px;
-    padding: 100px 0;
-    color: white;
-    overflow: hidden; /* Ensures the overlay covers the entire area */
+    display: flex;
+    align-items: center; /* Vertically centers content */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Ensures text readability */
+}
+
+#home h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
 }
 
 /* Full overlay */
@@ -151,12 +149,12 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.7); /* Dark overlay color with 50% opacity */
+    background: rgba(0, 0, 0, 0.6); /* Dark overlay color with 50% opacity */
     z-index: 1; /* Positions overlay below text */
 }
 
 /* Ensure container content is above the overlay */
-#home .container {
+#home .container-fluid {
     position: relative;
     z-index: 2; /* Brings text and other content above the overlay */
     padding: 100px;
@@ -207,6 +205,8 @@ h1, p {
 #about{
     padding-top: 80px;
     padding-bottom: 100px;
+    /* margin-left: 300px;
+    margin-right: 300px; */
 }
 
 #services{
@@ -289,8 +289,20 @@ li i {
 @media (max-width: 576px) {
     .backblue {
         padding: 15px;
+        /* margin-left: 10px;
+        margin-right: 10px; */
     }
 }
+
+.backblue {
+    background-color: #C6DDF6;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
 
 
 .backblue {
@@ -391,4 +403,66 @@ li i {
     border: 1px solid #ddd;
 }
 
+/* Responsive Layout */
+@media (max-width: 1200px) { /* For medium-sized screens like laptops */
+    #home, #product {
+        height: 450px;
+    }
+    #home h1, #product h1 {
+        font-size: 3rem;
+    }
+    .navbar-nav .nav-link {
+        font-size: 0.9rem;
+    }
+}
 
+@media (max-width: 992px) { /* For large tablets or small laptops */
+    #home, #product {
+        height: 400px;
+    }
+    #home h1, #product h1 {
+        font-size: 2.5rem;
+    }
+    .navbar-nav .nav-link {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 768px) { /* For iPad Air, Mini, or larger phones like iPhone 13 */
+    #home, #product {
+        height: 350px;
+    }
+    .navbar-nav {
+        text-align: center;
+    }
+    #home h1, #product h1 {
+        font-size: 2rem;
+    }
+    .card img {
+        height: 150px;
+    }
+    .btn-white, .btn-lightblue, .btn-darkblue, .btn-red, .btn-green {
+        padding: 5px 8px;
+        font-size: 0.85rem;
+    }
+    .footer {
+        padding: 10px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) { /* For iPhone 13 and smaller screens */
+    #home, #product {
+        height: auto;
+        padding: 10px;
+    }
+    .backblue {
+        padding: 15px;
+    }
+    .footer {
+        text-align: center;
+    }
+    .navbar-nav .nav-link {
+        font-size: 0.75rem;
+    }
+}

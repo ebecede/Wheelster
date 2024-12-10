@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-<div class="container col-md-3 backblue">
+<div class="container col-md-3 col-sm-8 col-10 backblue">
     <div class="text-center">
         <h1>Sign In</h1> <br>
     </div>
