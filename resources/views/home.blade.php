@@ -5,12 +5,16 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h1 class="fw-bold display-4">Welcome to <img src="{{ asset('images/logo-2.png') }}" alt="Wheelster Logo" height="70px"></h1>
+                    <h1 class="fw-bold display-4">
+                        Welcome to
+                        <img src="{{ asset('images/logo-2.png') }}" alt="Wheelster Logo" class="responsive-logo">
+                    </h1>
                     <p class="lead mt-3">Providing the best car steering modification services in the PIK area.</p>
                 </div>
             </div>
         </div>
     </section>
+
 
     <section id="about">
         <div class="container">

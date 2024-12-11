@@ -1,6 +1,20 @@
-body {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
     font-family: 'Montserrat', sans-serif;
-    padding-top: 60px;
+    font-size: 16px; /* Base font size */
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+body {
+    font-size: 1rem; /* Default font size */
 }
 
 .navbar{
@@ -127,80 +141,74 @@ body {
 
 #home {
     position: relative;
+    /* flex-direction: column; */
     background: url('/images/landing.jpg'); /* Background image path */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 510px;
+    height: auto;
     display: flex;
-    align-items: center; /* Vertically centers content */
+    padding: 20px;
+    min-height: 300px;
+    align-items: center;
+    text-align: center;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Ensures text readability */
-}
-
-#home h1 {
-    font-size: clamp(2rem, 5vw, 4rem);
-}
-
-/* Full overlay */
-#home::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.6); /* Dark overlay color with 50% opacity */
-    z-index: 1; /* Positions overlay below text */
-}
-
-/* Ensure container content is above the overlay */
-#home .container-fluid {
-    position: relative;
-    z-index: 2; /* Brings text and other content above the overlay */
-    padding: 100px;
-}
-
-
-h1, p {
-    margin: 0;
 }
 
 #product {
     position: relative;
-    background-image: url('/images/landing1.jpg'); /* Background image path */
+    /* flex-direction: column; */
+    background: url('/images/landing1.jpg'); /* Background image path */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 510px;
-    padding: 100px 0;
-    color: white;
-    overflow: hidden; /* Ensures the overlay covers the entire area */
+    height: auto;
+    display: flex;
+    padding: 20px;
+    min-height: 300px;
+    align-items: center;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Ensures text readability */
 }
 
-/* Full overlay */
-#product::before {
+
+#home h1, #product h1 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem); /* Ensure scalability */
+    color: white;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+#home p, #product p {
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    color: #ddd;
+}
+
+/* Overlay Fix */
+#home::before, #product::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7); /* Dark overlay color with 50% opacity */
-    z-index: 1; /* Positions overlay below text */
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+    z-index: 0;
 }
 
-/* Ensure container content is above the overlay */
-#product .container {
-    position: relative;
-    z-index: 2; /* Brings text and other content above the overlay */
-    padding: 100px;
+.responsive-logo {
+    width: clamp(100px, 20vw, 200px); /* Ukuran dinamis, minimum 100px, maksimum 200px */
+    height: auto; /* Mempertahankan rasio aspek */
+    vertical-align: middle; /* Menjaga posisi gambar di tengah teks */
 }
 
-
-h1, p {
-    margin: 0;
+/* Untuk memastikan logo tetap terlihat rapi pada layar kecil */
+@media (max-width: 576px) {
+    .responsive-logo {
+        width: 50vw; /* Lebar 50% dari viewport */
+    }
 }
-
 
 #about{
     padding-top: 80px;
@@ -416,53 +424,37 @@ li i {
     }
 }
 
-@media (max-width: 992px) { /* For large tablets or small laptops */
+@media (max-width: 576px) { /* For smaller devices like iPhone 13 */
     #home, #product {
-        height: 400px;
-    }
-    #home h1, #product h1 {
-        font-size: 2.5rem;
-    }
-    .navbar-nav .nav-link {
-        font-size: 0.85rem;
-    }
-}
-
-@media (max-width: 768px) { /* For iPad Air, Mini, or larger phones like iPhone 13 */
-    #home, #product {
-        height: 350px;
-    }
-    .navbar-nav {
-        text-align: center;
-    }
-    #home h1, #product h1 {
-        font-size: 2rem;
-    }
-    .card img {
         height: 150px;
+        padding: 20px;
     }
-    .btn-white, .btn-lightblue, .btn-darkblue, .btn-red, .btn-green {
-        padding: 5px 8px;
-        font-size: 0.85rem;
-    }
-    .footer {
-        padding: 10px;
-        text-align: center;
-    }
-}
-
-@media (max-width: 576px) { /* For iPhone 13 and smaller screens */
-    #home, #product {
-        height: auto;
-        padding: 10px;
+    #home h1, #product h1 {
+        font-size: 1.8rem;
     }
     .backblue {
+        margin: 10px 5px;
         padding: 15px;
     }
-    .footer {
-        text-align: center;
+    .navbar-nav .nav-link {
+        font-size: 0.8rem;
+    }
+}
+
+@media (min-width: 577px) and (max-width: 768px) { /* For medium-sized devices */
+    #home, #product {
+        height: auto; /* Allow flexibility */
     }
     .navbar-nav .nav-link {
-        font-size: 0.75rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (min-width: 769px) { /* For larger devices */
+    #home, #product {
+        height: 500px;
+    }
+    .navbar-nav .nav-link {
+        font-size: 1rem;
     }
 }
