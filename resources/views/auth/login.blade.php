@@ -47,12 +47,19 @@
         </div>
         <br>
         <div class="row mb-0">
-            <div class="col-md-8 offset-md-2">
-                <button type="submit" class="btn btn-darkblue btn-block">
+            <div class="col-md-8 offset-md-2 d-flex flex-column align-items-center">
+                <button type="submit" class="btn btn-darkblue btn-block mb-3">
                     {{ __('Login') }}
                 </button>
+
+                @if (Route::has('password.request'))
+                    <a class="btn text-darkblue p-0" href="{{ route('password.request') }}">
+                        {{ __('Forgot Your Password?') }}
+                    </a>
+                @endif
             </div>
         </div>
+
     </form>
     <br>
     <hr style="border-color: black;">
