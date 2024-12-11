@@ -20,22 +20,8 @@ class AdminSeeder extends Seeder
                 'id'=> 1,
                 'name' => 'Admin',
                 'email' => 'admin@admin.com',
-                'password' => Hash::make('12345678'),
+                'password' => Hash::make('semogaTidakNembus123'),
                 'is_admin' => true
-            ],
-            [
-                'id' => 2,
-                'name' => 'Edward Wijaya',
-                'email' => 'edwardwijaya08@gmail.com',
-                'password' => Hash::make('12345678'),
-                'is_admin' => false
-            ],
-            [
-                'id' => 3,
-                'name' => 'Allycia',
-                'email' => 'allyciametta@gmail.com',
-                'password' => Hash::make('12345678'),
-                'is_admin' => false
             ]
         ]);
 
