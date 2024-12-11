@@ -142,7 +142,7 @@
                                 <p class="card-text">2502001385<br>Computer Science</p>
                             </div>
                             <div class="col-md-4">
-                                <img src="{{ asset('images/edward.jpeg') }}" alt="Edward Wijaya" class="rounded-circle img-fluid mb-3">
+                                <img src="{{ asset('images/edward.jpg') }}" alt="Edward Wijaya" class="rounded-circle img-fluid mb-3">
                                 <h5 class="card-title">Edward Wijaya</h5>
                                 <p class="card-text">2540125434<br>Computer Science</p>
                             </div>

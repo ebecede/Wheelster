@@ -434,11 +434,15 @@ li i {
         font-size: 1.8rem;
     }
     .backblue {
-        margin: 10px 5px;
         padding: 15px;
     }
     .navbar-nav .nav-link {
         font-size: 0.8rem;
+    }
+    .footer{
+        padding: 10px;
+        text-align: center;
+        height: 500px;
     }
 }
 
@@ -457,5 +461,9 @@ li i {
     }
     .navbar-nav .nav-link {
         font-size: 1rem;
+    }
+    .footer{
+        padding: 10px;
+        text-align: center;
     }
 }
