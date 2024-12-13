@@ -53,9 +53,9 @@ document.querySelector("input[name='steeringWheelPhoto']").addEventListener("cha
             return;
         }
 
-        const maxSize = 5 * 1024 * 1024; // 10 MB in bytes
+        const maxSize = 5 * 1024 * 1024; // 5 MB in bytes
         if (file.size > maxSize) {
-            alert("The photo size must not exceed 10 MB.");
+            alert("The photo size must not exceed 5 MB.");
             event.target.value = ""; // Reset the input
         }
     }
