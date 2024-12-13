@@ -18,9 +18,12 @@ class OrderController extends Controller
     {
         $request->validate([
             'vehicleName' => 'required',
-            'steeringWheelPhoto' => 'required',
+            'steeringWheelPhoto' => 'required|file|mimes:jpg,jpeg,png,webp,heic|max:5000', // 10240 KB = 10 MB
             'scheduleDate' => 'required',
             'scheduleTime' => 'required',
+        ], [
+            'steeringWheelPhoto.mimes' => 'The photo must be a file of type: jpg, jpeg, png, webp, heic.',
+            'steeringWheelPhoto.max' => 'The photo size must not exceed 5 MB.',
         ]);
 
         $user_id = Auth::id();

@@ -15,7 +15,7 @@
             <h4><strong>{{ $product->name }}</strong></h4>
             <h3><strong>Rp{{ number_format($product->price, 2) }}</strong></h3>
             <p>Product Description: <br> {{ $product->description }}</p>
-            <br>
+
             <form action="{{ route('make_order', $product) }} " method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
@@ -24,7 +24,8 @@
                 </div>
                 <div class="form-group">
                     <label for="steeringWheelPhoto">Car Steering Wheel Photo</label>
-                    <input type="file" name="steeringWheelPhoto" class="form-control" required>
+                    <input type="file" name="steeringWheelPhoto" class="form-control" accept=".jpg,.jpeg,.png,.webp,.heic" required>
+                    <p class="info-text text-muted ms-1">Photo must be in .jpg, .jpeg, .png, .webp, or .heic format and Max 5 MB.</p>
                 </div>
                 <div class="form-group">
                     <label for="schedule">Select a Schedule Date</label>
@@ -42,6 +43,23 @@
 </div>
 
 <script>
+document.querySelector("input[name='steeringWheelPhoto']").addEventListener("change", function (event) {
+    const file = event.target.files[0];
+    if (file) {
+        const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/heic'];
+        if (!allowedTypes.includes(file.type)) {
+            alert("The photo must be a file of type: jpg, jpeg, png, webp, heic.");
+            event.target.value = ""; // Reset the input
+            return;
+        }
+
+        const maxSize = 5 * 1024 * 1024; // 10 MB in bytes
+        if (file.size > maxSize) {
+            alert("The photo size must not exceed 10 MB.");
+            event.target.value = ""; // Reset the input
+        }
+    }
+});
 document.addEventListener("DOMContentLoaded", function () {
     const scheduleDateInput = document.getElementById("scheduleDate");
     const today = new Date();

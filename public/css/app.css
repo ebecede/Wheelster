@@ -312,17 +312,6 @@ li i {
     margin-bottom: 50px;
 }
 
-
-
-.backblue {
-    background-color: #C6DDF6;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-
 .logo {
     text-align: center;
     margin-bottom: 30px;
@@ -338,6 +327,11 @@ li i {
 
 .form-control {
     border-radius: 5px;
+}
+
+.info-text {
+    font-style: italic;
+    font-size: 0.875rem; /* Equivalent to 14px, smaller than default font size */
 }
 
 .create-account {

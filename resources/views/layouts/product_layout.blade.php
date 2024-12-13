@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="{{ asset('public/favicon.png') }}" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -95,14 +96,14 @@
                 <div class="col-lg-6 col-md-6 mb-4 mb-lg-0">
                     <div class="row footer-nav">
                         <div class="col-6">
-                            <a href="#">Home</a>
-                            <a href="#about">About Us</a>
-                            <a href="#services">Services</a>
+                            <a href="{{ route('home') }}">Home</a>
+                            <a href="{{ route('home') }}">About Us</a>
+                            <a href="{{ route('home') }}">Services</a>
                         </div>
                         <div class="col-6">
-                            <a href="#team">Team</a>
-                            <a href="#contact">Contact Us</a>
-                            <a href="#product">Product</a>
+                            <a href="{{ route('home') }}">Team</a>
+                            <a href="{{ route('home') }}">Contact Us</a>
+                            <a href="{{ route('index_product') }}">Product</a>
                         </div>
                     </div>
                 </div>
@@ -120,15 +121,12 @@
                 </div>
             </div>
             <!-- Footer Bottom -->
-            <div class="row footer-bottom mt-3">
-                <div class="col-md-6 text-center text-md-left">
+            <div class="row footer-bottom mt-3 text-center">
+                <div class="col-md-12">
                     <p>&copy; 2024 Wheelster. All Rights Reserved.</p>
                 </div>
-                <div class="col-md-6 text-center text-md-right">
-                    <a href="#">Terms & Conditions</a> |
-                    <a href="#">Privacy Policy</a>
-                </div>
             </div>
+
         </div>
     </footer>
     @yield('scripts')

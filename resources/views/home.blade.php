@@ -177,8 +177,15 @@
                 <ul class="list-unstyled">
                     <li><i class="bi bi-geo-alt fs-5"></i> Ruko La Riviera Blok B No.11, Lemo, Kec. Teluknaga, Tanggerang, Kabupaten Tangerang, Banten 15510</li>
                     <li><i class="bi bi-clock fs-5"></i> 10.00 am - 5.00 pm (Sunday Closed)</li>
-                    <li><i class="bi bi-envelope fs-5"></i> wheelsteer.id@gmail.com</li>
-                    <li><i class="bi bi-phone fs-5"></i> 085217920501</li>
+                    <li>
+                        <i class="bi bi-envelope fs-5"></i>
+                        <a href="mailto:wheelsteer.id@gmail.com" style="text-decoration: none; color:black;">wheelsteer.id@gmail.com</a>
+                    </li>
+                    <li>
+                        <a href="https://wa.me/+6285217920501" target="_blank" aria-label="WhatsApp" style="text-decoration: none; color:black;">
+                            <i class="bi bi-phone fs-5"></i> 085217920501
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
