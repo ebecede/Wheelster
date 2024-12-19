@@ -16,9 +16,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('product_id')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
             // $table->foreignId('montir_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->string('vehicleName');
+            $table->string('vehicleName',50);
             $table->string('steeringWheelPhoto');
-            $table->string('status');
+            $table->string('status',20);
             $table->date('scheduleDate');
             $table->string('scheduleTime');
             $table->timestamps();
