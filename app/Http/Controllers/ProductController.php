@@ -26,7 +26,7 @@ class ProductController extends Controller
                 'price' => 'required|numeric|min:1',
                 'description' => 'required',
                 'stock' => 'required|integer|min:0',
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5000',
+                'image' => 'required|file|mimes:jpeg,png,jpg,gif|max:5000',
             ],
             [
                 'name.required' => 'The product name is required.',
@@ -39,7 +39,6 @@ class ProductController extends Controller
                 'stock.integer' => 'The stock must be an integer.',
                 'stock.min' => 'The stock cannot be negative.',
                 'image.required' => 'Please upload an image for the product.',
-                'image.image' => 'The uploaded file must be an image.',
                 'image.mimes' => 'The image must be a file of type: jpeg, png, jpg, gif.',
                 'image.max' => 'The image size must not exceed 5MB.',
             ]
@@ -106,14 +105,24 @@ class ProductController extends Controller
 
     public function update_product(Product $product, Request $request)
     {
+        $customMessages = [
+            'name.required' => 'Please enter the product name.',
+            'brand_id.required' => 'Please select a brand.',
+            'price.required' => 'Please specify the product price.',
+            'description.required' => 'Please provide a product description.',
+            'stock.required' => 'Please enter the stock quantity.',
+            'image.mimes' => 'The photo must be a file of type: jpg, jpeg, png, webp, heic.',
+            'image.max' => 'The image size must not exceed 5 MB.',
+        ];
+
         $request->validate([
             'name' => 'required',
             'brand_id' => 'required',
             'price' => 'required',
             'description' => 'required',
-            'stock' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Make this nullable
-        ]);
+            'stock' => 'required|integer|min:0',
+            'image' => 'nullable|file|mimes:jpg,jpeg,png,webp,heic|max:5000',
+        ], $customMessages);
 
         $data = [
             'name' => $request->name,
@@ -123,24 +132,21 @@ class ProductController extends Controller
             'stock' => $request->stock,
         ];
 
-        // Check if a new image was uploaded
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $path = time() . '_' . $request->name . "." . $file->getClientOriginalExtension();
 
-            // Store the new image
             Storage::disk('public')->put('public/' . $path, file_get_contents($file));
-            $data['image'] = $path; // Update the image path in data
+            $data['image'] = $path;
         } else {
-            // Keep the existing image if no new image was uploaded
             $data['image'] = $product->image;
         }
 
-        // Update the product
         $product->update($data);
 
         return Redirect::route('index_product_admin', $product);
     }
+
 
 
     // DELETE PRODUCT

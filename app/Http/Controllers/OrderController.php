@@ -18,7 +18,7 @@ class OrderController extends Controller
     {
         $request->validate([
             'vehicleName' => 'required',
-            'steeringWheelPhoto' => 'required|file|mimes:jpg,jpeg,png,webp,heic|max:5000', // 10240 KB = 10 MB
+            'steeringWheelPhoto' => 'required|file|mimes:jpg,jpeg,png,webp,heic|max:5000',
             'scheduleDate' => 'required',
             'scheduleTime' => 'required',
         ], [
@@ -113,10 +113,16 @@ class OrderController extends Controller
 
     public function reschedule_order(Order $order, Request $request)
     {
+        $customMessages = [
+            'scheduleDate.required' => 'Please select a new schedule date.',
+            'scheduleDate.date' => 'The selected date must be a valid date.',
+            'scheduleTime.required' => 'Please select a new schedule time.',
+        ];
+
         $request->validate([
             'scheduleDate' => 'required|date',
             'scheduleTime' => 'required',
-        ]);
+        ], $customMessages);
 
         // Check if the selected time slot is available
         $maxOrder = $request->scheduleTime === '17:00 - 18:00' ? 1 : 2;
@@ -135,8 +141,9 @@ class OrderController extends Controller
             'scheduleTime' => $request->scheduleTime,
         ]);
 
-        return Redirect::route('show_order');
+        return Redirect::route('show_order')->with('success', 'Order rescheduled successfully!');
     }
+
 
     public function cancel_order(Order $order)
     {
@@ -197,6 +204,8 @@ class OrderController extends Controller
             'scheduleDate' => 'required|date',
             'product_id' => 'required|exists:products,id',
             'steeringWheelPhoto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5000', // Optional image upload
+        ], [
+            'vehicleName.required' => 'Please provide the vehicle name and model.',
         ]);
 
         // Check if the product has been changed

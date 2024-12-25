@@ -15,14 +15,28 @@
                 @csrf
                 <div class="form-group">
                     <label for="scheduleDate">Select a New Schedule Date</label>
-                    <input type="date" name="scheduleDate" class="form-control" id="scheduleDate" required min="{{ now()->addDays(7)->toDateString() }}">
+                    <input type="date" name="scheduleDate" class="form-control @error('scheduleDate') is-invalid @enderror"
+                           id="scheduleDate" min="{{ now()->addDays(7)->toDateString() }}">
+                    @error('scheduleDate')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
+
                 <div class="form-group">
                     <label for="scheduleTime">Select a New Schedule Time</label>
-                    <select name="scheduleTime" class="form-control" id="scheduleTime" required>
-                        <!-- Time slots will be populated here by JavaScript based on date availability -->
+                    <select name="scheduleTime" class="form-control @error('scheduleTime') is-invalid @enderror" id="scheduleTime">
+                        <option value="" selected disabled>Select a Schedule</option>
+                        <!-- Time slots will be dynamically populated here -->
                     </select>
+                    @error('scheduleTime')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
+
                 <button type="submit" class="btn-darkblue btn-block mt-4" style="padding: 5px 5px">Submit</button>
             </form>
         </div>
@@ -34,14 +48,30 @@ document.addEventListener("DOMContentLoaded", function () {
     const scheduleDateInput = document.getElementById("scheduleDate");
     const scheduleTimeSelect = document.getElementById("scheduleTime");
 
-    // Set the minimum date to 7 days from today
+    // Set minimum date dynamically
     const today = new Date();
     const minDate = new Date(today.setDate(today.getDate() + 2)).toISOString().split("T")[0];
     scheduleDateInput.min = minDate;
 
-    // Fetch and update available slots for the selected date
+    // Reset the schedule time select
+    function resetScheduleTimeSelect() {
+        scheduleTimeSelect.innerHTML = ''; // Clear existing options
+        const defaultOption = document.createElement("option");
+        defaultOption.value = "";
+        defaultOption.textContent = "Select a Schedule";
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+        scheduleTimeSelect.appendChild(defaultOption);
+    }
+
+    // Fetch available time slots based on the selected date
     scheduleDateInput.addEventListener("change", function () {
         const scheduleDate = scheduleDateInput.value;
+
+        if (!scheduleDate) {
+            resetScheduleTimeSelect();
+            return;
+        }
 
         fetch('{{ route('check_availability') }}', {
             method: 'POST',
@@ -53,14 +83,21 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(response => response.json())
         .then(data => {
-            scheduleTimeSelect.innerHTML = ''; // Clear existing options
+            resetScheduleTimeSelect(); // Reset dropdown with the default option
+
+            if (Object.keys(data).length === 0) {
+                const noSlotsOption = document.createElement("option");
+                noSlotsOption.textContent = "No available slots for this date.";
+                noSlotsOption.disabled = true;
+                scheduleTimeSelect.appendChild(noSlotsOption);
+                return;
+            }
 
             for (const [time, slots] of Object.entries(data)) {
                 const option = document.createElement("option");
                 option.value = time;
                 option.textContent = `${time} (${slots} slots available)`;
 
-                // Disable option if no slots are available
                 if (slots === 0) {
                     option.disabled = true;
                 }
@@ -70,6 +107,9 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => console.error('Error fetching availability:', error));
     });
+
+    // Initialize with default state
+    resetScheduleTimeSelect();
 });
 </script>
 

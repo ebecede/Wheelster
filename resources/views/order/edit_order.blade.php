@@ -48,7 +48,10 @@
                 <!-- Vehicle Information -->
                 <div class="form-group mb-3">
                     <label for="vehicleName">Vehicle Name and Model</label>
-                    <input type="text" name="vehicleName" class="form-control" value="{{ $order->vehicleName }}" required>
+                    <input type="text" name="vehicleName" class="form-control @error('vehicleName') is-invalid @enderror" value="{{ old('vehicleName', $order->vehicleName) }}">
+                    @error('vehicleName')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <!-- Schedule Date and Time -->

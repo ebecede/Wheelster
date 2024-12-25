@@ -47,6 +47,7 @@
                 <div class="form-group">
                     <label for="scheduleTime">Select a Schedule Time</label>
                     <select name="scheduleTime" class="form-control @error('scheduleTime') is-invalid @enderror">
+                        <option value="" selected disabled>Select a Schedule</option>
                         <!-- Slot options will be dynamically populated -->
                     </select>
                     @error('scheduleTime')
@@ -64,19 +65,32 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const scheduleDateInput = document.getElementById("scheduleDate");
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 2);
-    const year = tomorrow.getFullYear();
-    const month = String(tomorrow.getMonth() + 1).padStart(2, '0');
-    const day = String(tomorrow.getDate()).padStart(2, '0');
-    scheduleDateInput.min = `${year}-${month}-${day}`;
-
     const scheduleTimeSelect = document.querySelector("select[name='scheduleTime']");
+
+    // Set minimum date to 2 days from today
+    const today = new Date();
+    const minDate = new Date(today.setDate(today.getDate() + 2)).toISOString().split("T")[0];
+    scheduleDateInput.min = minDate;
+
+    // Reset the schedule time select dropdown
+    function resetScheduleTimeSelect() {
+        scheduleTimeSelect.innerHTML = ''; // Clear existing options
+        const defaultOption = document.createElement("option");
+        defaultOption.value = "";
+        defaultOption.textContent = "Select a Schedule";
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+        scheduleTimeSelect.appendChild(defaultOption);
+    }
 
     // Fetch and update available slots for the selected date
     scheduleDateInput.addEventListener("change", function () {
         const scheduleDate = scheduleDateInput.value;
+
+        if (!scheduleDate) {
+            resetScheduleTimeSelect();
+            return;
+        }
 
         fetch('{{ route('check_availability') }}', {
             method: 'POST',
@@ -88,7 +102,15 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(response => response.json())
         .then(data => {
-            scheduleTimeSelect.innerHTML = ''; // Clear existing options
+            resetScheduleTimeSelect(); // Reset dropdown with the default option
+
+            if (Object.keys(data).length === 0) {
+                const noSlotsOption = document.createElement("option");
+                noSlotsOption.textContent = "No available slots for this date.";
+                noSlotsOption.disabled = true;
+                scheduleTimeSelect.appendChild(noSlotsOption);
+                return;
+            }
 
             for (const [time, slots] of Object.entries(data)) {
                 const option = document.createElement("option");
@@ -105,6 +127,9 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => console.error('Error fetching availability:', error));
     });
+
+    // Initialize with default state
+    resetScheduleTimeSelect();
 });
 </script>
 @endsection

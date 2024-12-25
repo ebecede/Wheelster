@@ -67,7 +67,7 @@
                 <!-- Product Price -->
                 <div class="form-group mb-3">
                     <label for="price">Product Price</label>
-                    <input type="number" name="price" id="price"
+                    <input type="" name="price" id="price"
                         class="form-control @error('price') is-invalid @enderror"
                         value="{{ old('price') }}">
 
