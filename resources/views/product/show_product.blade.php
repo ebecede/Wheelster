@@ -16,50 +16,52 @@
             <h3><strong>Rp{{ number_format($product->price, 2) }}</strong></h3>
             <p>Product Description: <br> {{ $product->description }}</p>
 
-            <form action="{{ route('make_order', $product) }} " method="POST" enctype="multipart/form-data">
+            <!-- Form -->
+            <form action="{{ route('make_order', $product) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="vehicleName">Vehicle Name and Model</label>
-                    <input type="text" name="vehicleName" class="form-control" required>
+                    <input type="text" name="vehicleName" class="form-control @error('vehicleName') is-invalid @enderror" value="{{ old('vehicleName') }}">
+                    @error('vehicleName')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
+
                 <div class="form-group">
                     <label for="steeringWheelPhoto">Car Steering Wheel Photo</label>
-                    <input type="file" name="steeringWheelPhoto" class="form-control" accept=".jpg,.jpeg,.png,.webp,.heic" required>
+                    <input type="file" name="steeringWheelPhoto" class="form-control @error('steeringWheelPhoto') is-invalid @enderror" accept=".jpg,.jpeg,.png,.webp,.heic">
                     <p class="info-text text-muted ms-1">Photo must be in .jpg, .jpeg, .png, .webp, or .heic format and Max 5 MB.</p>
+                    @error('steeringWheelPhoto')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
+
                 <div class="form-group">
-                    <label for="schedule">Select a Schedule Date</label>
-                    <input type="date" name="scheduleDate" class="form-control" id="scheduleDate" required>
+                    <label for="scheduleDate">Select a Schedule Date</label>
+                    <input type="date" name="scheduleDate" class="form-control @error('scheduleDate') is-invalid @enderror" id="scheduleDate" value="{{ old('scheduleDate') }}">
+                    @error('scheduleDate')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
+
                 <div class="form-group">
                     <label for="scheduleTime">Select a Schedule Time</label>
-                    <select name="scheduleTime" class="form-control" required>
+                    <select name="scheduleTime" class="form-control @error('scheduleTime') is-invalid @enderror">
+                        <!-- Slot options will be dynamically populated -->
                     </select>
+                    @error('scheduleTime')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
+
                 <button type="submit" class="btn-darkblue btn-block mt-4" style="padding: 5px 5px">Submit</button>
             </form>
         </div>
     </div>
 </div>
 
+<!-- JavaScript -->
 <script>
-document.querySelector("input[name='steeringWheelPhoto']").addEventListener("change", function (event) {
-    const file = event.target.files[0];
-    if (file) {
-        const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/heic'];
-        if (!allowedTypes.includes(file.type)) {
-            alert("The photo must be a file of type: jpg, jpeg, png, webp, heic.");
-            event.target.value = ""; // Reset the input
-            return;
-        }
-
-        const maxSize = 5 * 1024 * 1024; // 5 MB in bytes
-        if (file.size > maxSize) {
-            alert("The photo size must not exceed 5 MB.");
-            event.target.value = ""; // Reset the input
-        }
-    }
-});
 document.addEventListener("DOMContentLoaded", function () {
     const scheduleDateInput = document.getElementById("scheduleDate");
     const today = new Date();
@@ -105,5 +107,4 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 </script>
-
 @endsection

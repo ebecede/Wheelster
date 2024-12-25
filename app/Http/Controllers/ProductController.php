@@ -18,20 +18,40 @@ class ProductController extends Controller
 
     public function store_product(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'brand_id' => 'required',
-            'price' => 'required',
-            'description' => 'required',
-            'stock'=>'required',
-            'image' => 'required',
-        ]);
+        // Validation with custom messages
+        $request->validate(
+            [
+                'name' => 'required',
+                'brand_id' => 'required',
+                'price' => 'required|numeric|min:1',
+                'description' => 'required',
+                'stock' => 'required|integer|min:0',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5000',
+            ],
+            [
+                'name.required' => 'The product name is required.',
+                'brand_id.required' => 'Please select a brand.',
+                'price.required' => 'The product price is required.',
+                'price.numeric' => 'The price must be a number.',
+                'price.min' => 'The price must be at least 1.',
+                'description.required' => 'The product description is required.',
+                'stock.required' => 'The stock field is required.',
+                'stock.integer' => 'The stock must be an integer.',
+                'stock.min' => 'The stock cannot be negative.',
+                'image.required' => 'Please upload an image for the product.',
+                'image.image' => 'The uploaded file must be an image.',
+                'image.mimes' => 'The image must be a file of type: jpeg, png, jpg, gif.',
+                'image.max' => 'The image size must not exceed 5MB.',
+            ]
+        );
 
+        // Process the file upload
         $file = $request->file('image');
         $path = time() . '_' . $request->name . "." . $file->getClientOriginalExtension();
 
         Storage::disk('public')->put('public/' . $path, file_get_contents($file));
 
+        // Create the product
         Product::create([
             'name' => $request->name,
             'brand_id' => $request->brand_id,
@@ -41,8 +61,10 @@ class ProductController extends Controller
             'image' => $path,
         ]);
 
+        // Redirect to the admin product index page
         return Redirect::route('index_product_admin');
     }
+
 
     public function index_product(Request $request)
     {

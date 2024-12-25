@@ -6,12 +6,19 @@
         <h1>Sign In</h1> <br>
     </div>
 
+    {{-- Menampilkan error global, misalnya kesalahan login --}}
+    @if (session('error'))
+        <div class="alert alert-danger text-center">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
         <div class="mb-3">
             <label for="email" class="form-label">{{ __('Email Address') }}</label>
-            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
+            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" autofocus placeholder="Email">
 
             @error('email')
                 <span class="invalid-feedback" role="alert">
@@ -22,7 +29,7 @@
 
         <div class="mb-3 position-relative">
             <label for="password" class="form-label">{{ __('Password') }}</label>
-            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password" style="padding-right: 40px;">
+            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password" placeholder="Password" style="padding-right: 40px;">
             <button type="button" onclick="togglePasswordVisibility()" class="btn btn-light position-absolute bottom-0 end-0" style="border:none; background-color: transparent;">
                 <i id="toggleIcon" class="bi bi-eye-slash"></i>
             </button>
@@ -84,5 +91,4 @@
         }
     }
 </script>
-
 @endsection

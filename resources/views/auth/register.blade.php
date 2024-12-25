@@ -11,10 +11,12 @@
                 @csrf
 
                 <div class="row">
-                    <div class="col-md-6 mb-3">
+                    <!-- Name Field -->
+                    <div class="col-md-6 mb-3 position-relative">
                         <label for="name" class="form-label">{{ __('Name') }}</label>
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Name">
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus placeholder="Name">
 
+                        <!-- Error Message -->
                         @error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -22,10 +24,12 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-6 mb-3">
+                    <!-- Email Field -->
+                    <div class="col-md-6 mb-3 position-relative">
                         <label for="email" class="form-label">{{ __('Email Address') }}</label>
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" placeholder="Email">
 
+                        <!-- Error Message -->
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -35,10 +39,12 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6 mb-3">
+                    <!-- Password Field -->
+                    <div class="col-md-6 mb-3 position-relative">
                         <label for="password" class="form-label">{{ __('Password') }}</label>
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password" placeholder="Password" style="padding-right: 40px;">
 
+                        <!-- Error Message -->
                         @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -46,9 +52,11 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-6 mb-3">
+                    <!-- Confirm Password Field -->
+                    <div class="col-md-6 mb-3 position-relative">
                         <label for="password-confirm" class="form-label">{{ __('Confirm Password') }}</label>
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+                        <input id="password-confirm" type="password" class="form-control"
+                            name="password_confirmation" autocomplete="new-password" placeholder="Confirm Password">
                     </div>
                 </div>
 

@@ -22,8 +22,12 @@ class OrderController extends Controller
             'scheduleDate' => 'required',
             'scheduleTime' => 'required',
         ], [
+            'vehicleName.required' => 'Vehicle Name and Model is required.',
+            'steeringWheelPhoto.required' => 'Car Steering Wheel Photo is required.',
             'steeringWheelPhoto.mimes' => 'The photo must be a file of type: jpg, jpeg, png, webp, heic.',
             'steeringWheelPhoto.max' => 'The photo size must not exceed 5 MB.',
+            'scheduleDate.required' => 'Schedule Date is required.',
+            'scheduleTime.required' => 'Schedule Time is required.',
         ]);
 
         $user_id = Auth::id();
@@ -37,7 +41,7 @@ class OrderController extends Controller
                             ->count();
 
         if ($orderCount >= $maxOrder) {
-            return back()->withErrors(['scheduleTime' => 'The selected session is fully booked. Please choose another time.']);
+            return back()->withErrors(['scheduleTime' => 'The selected session is fully booked. Please choose another time.'])->withInput();
         }
 
         $file = $request->file('steeringWheelPhoto');
@@ -59,6 +63,7 @@ class OrderController extends Controller
 
         return Redirect::route('show_order');
     }
+
 
     public function checkAvailability(Request $request)
     {
@@ -191,7 +196,7 @@ class OrderController extends Controller
             'vehicleName' => 'required|string',
             'scheduleDate' => 'required|date',
             'product_id' => 'required|exists:products,id',
-            'steeringWheelPhoto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Optional image upload
+            'steeringWheelPhoto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5000', // Optional image upload
         ]);
 
         // Check if the product has been changed
