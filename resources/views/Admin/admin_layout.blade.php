@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{{-- WARNING!! THIS TEMPLATE IS NOT USED --}}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,7 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <title>Wheelster</title>
 </head>
@@ -31,6 +31,7 @@
                     <a class="nav-link me-3" href="#contact">Contact Us</a>
                     <a class="nav-link me-3" href="{{ route('index_product_admin') }}">Product</a>
                     <a class="nav-link me-3" href="{{ route('show_all_order') }}">Order</a>
+                    <a class="nav-link me-3" href="{{ route('view_report') }}">Report</a>
                 </div>
                 <div class="d-flex justify-content-center mt-2 mt-lg-0 me-3">
                     @guest

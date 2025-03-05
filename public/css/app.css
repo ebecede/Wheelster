@@ -1,11 +1,27 @@
-body {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
     font-family: 'Montserrat', sans-serif;
+    font-size: 16px; /* Base font size */
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+body {
     padding-top: 60px;
+    font-size: 1rem; /* Default font size */
 }
 
 .navbar{
     background-color: #091954;
 }
+
 .navbar-nav .nav-link{
     color: white;
 }
@@ -27,6 +43,12 @@ body {
     outline: none; /* Remove default outline */
     box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.75); /* Add white outline on hover/focus */
 }
+.navbar-nav .nav-link.active {
+    color: #C6DDF6; /* Highlight color */
+    font-weight: bold; /* Optional: Make the text bold */
+    border-bottom: 2px solid #C6DDF6; /* Optional: Add a border to highlight */
+}
+
 
 .btn-white {
     background-color: #374B8C;
@@ -36,8 +58,6 @@ body {
     padding: 5px 10px;
     text-align: center;
     text-decoration: none;
-    /* display: inline-block; */
-    /* transition: background-color 0.3s ease; */
 }
 
 .btn-white:hover {
@@ -46,16 +66,29 @@ body {
     border: 1px solid #DDE1F0;
 }
 
+.btn-lightblue {
+    background-color: #99c5f2;
+    color: black;
+    border: 1px solid #dde1f0;
+    border-radius: 12px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-lightblue:hover {
+    background-color: #091954;
+    transition: background-color 0.3s ease;
+    color: white;
+    border: 1px solid #dde1f0;
+}
+
 .btn-darkblue {
     background-color: #091954;
     color: white;
     border: 1px solid #DDE1F0;
     border-radius: 12px;
-    /* padding: 5px 10px; */
     text-align: center;
     text-decoration: none;
-    /* display: inline-block; */
-    /* transition: background-color 0.3s ease; */
 }
 
 .btn-darkblue:hover {
@@ -69,11 +102,8 @@ body {
     color: white;
     border: 1px solid #DDE1F0;
     border-radius: 12px;
-    /* padding: 10px 10px; */
     text-align: center;
     text-decoration: none;
-    /* display: inline-block; */
-    /* transition: background-color 0.3s ease; */
 }
 
 .btn-red:hover {
@@ -87,11 +117,8 @@ body {
     color: white;
     border: 1px solid #DDE1F0;
     border-radius: 12px;
-    /* padding: 10px 10px; */
     text-align: center;
     text-decoration: none;
-    /* display: inline-block; */
-    /* transition: background-color 0.3s ease; */
 }
 
 .btn-green:hover {
@@ -100,37 +127,95 @@ body {
     border: 1px solid #DDE1F0;
 }
 
-#home {
-    background: url('images/Landing.png') no-repeat center center;
-    background-size: cover;
-    position: relative;
-    color: white;
-    height: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 80px;
+.bg-blue {
+    background-color: #99C5F280; /* 0.5 sets the opacity to 50% */
 }
 
-#home::before {
+.styled-hr {
+    border-width: 2px;
+    height: 2px;
+    border-color: black;
+    margin: 0 auto 10px auto;
+  }
+
+/* public/css/style.css */
+
+#home {
+    position: relative;
+    /* flex-direction: column; */
+    background: url('/images/landing.jpg'); /* Background image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: auto;
+    display: flex;
+    padding: 20px;
+    min-height: 300px;
+    align-items: center;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Ensures text readability */
+}
+
+#product {
+    position: relative;
+    /* flex-direction: column; */
+    background: url('/images/landing1.jpg'); /* Background image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: auto;
+    display: flex;
+    padding: 20px;
+    min-height: 300px;
+    align-items: center;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Ensures text readability */
+}
+
+
+#home h1, #product h1 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem); /* Ensure scalability */
+    color: white;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+#home p, #product p {
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    color: #ddd;
+}
+
+/* Overlay Fix */
+#home::before, #product::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Adjust the overlay color and opacity as needed */
-    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+    z-index: 0;
 }
 
-#home .container {
-    position: relative;
-    z-index: 2;
+.responsive-logo {
+    width: clamp(100px, 20vw, 200px); /* Ukuran dinamis, minimum 100px, maksimum 200px */
+    height: auto; /* Mempertahankan rasio aspek */
+    vertical-align: middle; /* Menjaga posisi gambar di tengah teks */
+}
+
+/* Untuk memastikan logo tetap terlihat rapi pada layar kecil */
+@media (max-width: 576px) {
+    .responsive-logo {
+        width: 50vw; /* Lebar 50% dari viewport */
+    }
 }
 
 #about{
     padding-top: 80px;
     padding-bottom: 100px;
+    /* margin-left: 300px;
+    margin-right: 300px; */
 }
 
 #services{
@@ -210,6 +295,13 @@ li i {
     margin-right: 10px; /* Space between icon and text */
 }
 
+@media (max-width: 576px) {
+    .backblue {
+        padding: 15px;
+        /* margin-left: 10px;
+        margin-right: 10px; */
+    }
+}
 
 .backblue {
     background-color: #C6DDF6;
@@ -217,6 +309,7 @@ li i {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .logo {
@@ -236,6 +329,11 @@ li i {
     border-radius: 5px;
 }
 
+.info-text {
+    font-style: italic;
+    font-size: 0.875rem; /* Equivalent to 14px, smaller than default font size */
+}
+
 .create-account {
     text-align: center;
     margin-top: 20px;
@@ -250,56 +348,6 @@ li i {
 .create-account a:hover {
     text-decoration: underline;
 }
-
-/* .custom-input { */
-    /* padding: 0.375rem 0.75rem; Adjust padding to make the input shorter */
-    /* font-size: 0.875rem; Adjust font size */
-    /* height: auto; Ensure height is adjusted based on padding */
-/* } */
-
-/* LOGIN */
-/* .login-form {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.login-form h2 {
-    margin-bottom: 20px;
-}
-
-.login-form label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.login-form input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-
-.login-form button {
-    background-color: #002663;
-    color: #fff;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.login-form button:hover {
-    opacity: 0.8;
-}
-
-.login-form p {
-    margin-top: 20px;
-    font-size: 14px;
-} */
 
 /* FOOTER */
 .footer {
@@ -358,3 +406,58 @@ li i {
     border: 1px solid #ddd;
 }
 
+/* Responsive Layout */
+@media (max-width: 1200px) { /* For medium-sized screens like laptops */
+    #home, #product {
+        height: 450px;
+    }
+    #home h1, #product h1 {
+        font-size: 3rem;
+    }
+    .navbar-nav .nav-link {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) { /* For smaller devices like iPhone 13 */
+    #home, #product {
+        height: 150px;
+        padding: 20px;
+    }
+    #home h1, #product h1 {
+        font-size: 1.8rem;
+    }
+    .backblue {
+        padding: 15px;
+    }
+    .navbar-nav .nav-link {
+        font-size: 0.8rem;
+    }
+    .footer{
+        padding: 10px;
+        text-align: center;
+        height: 500px;
+    }
+}
+
+@media (min-width: 577px) and (max-width: 768px) { /* For medium-sized devices */
+    #home, #product {
+        height: auto; /* Allow flexibility */
+    }
+    .navbar-nav .nav-link {
+        font-size: 0.85rem;
+    }
+}
+
+@media (min-width: 769px) { /* For larger devices */
+    #home, #product {
+        height: 500px;
+    }
+    .navbar-nav .nav-link {
+        font-size: 1rem;
+    }
+    .footer{
+        padding: 10px;
+        text-align: center;
+    }
+}
